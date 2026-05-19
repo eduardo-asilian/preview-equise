@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equisé · Consultoría de Recursos Humanos</title>
+  <meta name="description" content="Acompañamiento estratégico en gestión de personas. Ayudamos a líderes y organizaciones a ordenar, decidir y delegar con criterio y cuidado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:     #1c2d45;
+      --terra:    #7a3e32;
+      --terra-lt: #9e5444;
+      --cream:    #f4ede0;
+      --linen:    #ede4d3;
+      --warm-gray:#c8bcac;
+      --text:     #2a2018;
+      --text-mid: #5a4e42;
+      --white:    #faf8f4;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; background: transparent; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(28,45,69,0.96); backdrop-filter: blur(8px); padding: 1rem 4rem; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 2rem; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta { color: var(--cream) !important; border: 1px solid rgba(244,237,224,0.4); padding: 0.5rem 1.2rem; border-radius: 2px; }
+    .nav-cta:hover { background: rgba(244,237,224,0.1) !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 10rem 5rem 6rem 4rem; position: relative; z-index: 2; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra-lt); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,5vw,5rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+    .hero-title em { font-style: italic; color: var(--warm-gray); }
+    .hero-sub { font-size: 1rem; line-height: 1.7; color: var(--warm-gray); max-width: 38ch; margin-bottom: 3rem; font-weight: 300; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+    .btn-primary { background: var(--terra); color: var(--cream); border: none; padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s; border-radius: 2px; display: inline-block; }
+    .btn-primary:hover { background: var(--terra-lt); }
+    .btn-ghost { color: var(--warm-gray); font-size: 0.82rem; letter-spacing: 0.08em; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .btn-ghost:hover { color: var(--cream); }
+    .btn-ghost::after { content: '→'; }
+    .hero-right { position: relative; overflow: hidden; display: flex; align-items: stretch; padding: 5rem 3rem 3rem 0; }
+    .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--navy) 0%, transparent 35%), linear-gradient(to top, var(--navy) 0%, transparent 20%); z-index: 1; }
+    .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 4px; opacity: 0.6; filter: sepia(20%) contrast(1.05); animation: zoomIn 1.2s 0.2s forwards; transform: scale(1.06); }
+    .hero-tagline { position: absolute; bottom: 3.5rem; right: 4rem; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--warm-gray); letter-spacing: 0.04em; z-index: 2; opacity: 0; animation: fadeUp 0.8s 1s forwards; line-height: 1.5; text-align: right; }
+
+    /* SHARED */
+    .rule { width: 2.5rem; height: 2px; background: var(--terra); margin-bottom: 1.5rem; }
+    section { padding: 7rem 4rem; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3.5vw,3.4rem); font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--terra); }
+    .section-lead { font-size: 1.05rem; line-height: 1.75; color: var(--text-mid); max-width: 55ch; font-weight: 300; }
+
+    /* PROPUESTA */
+    .propuesta { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .propuesta-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .pillar { padding: 1.8rem; background: var(--white); border-left: 3px solid var(--terra); transition: transform 0.25s, box-shadow 0.25s; }
+    .pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(28,45,69,0.08); }
+    .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; }
+    .pillar-text { font-size: 0.88rem; line-height: 1.65; color: var(--text-mid); font-weight: 300; }
+
+    /* PROCESO */
+    .proceso { background: var(--navy); text-align: center; }
+    .proceso .section-label { color: var(--warm-gray); }
+    .proceso .section-title { color: var(--cream); }
+    .proceso .section-lead { color: var(--warm-gray); margin: 0 auto 4rem; }
+    .proceso-steps { display: grid; grid-template-columns: repeat(4,1fr); position: relative; max-width: 900px; margin: 0 auto; }
+    .proceso-steps::before { content: ''; position: absolute; top: 2rem; left: 12%; right: 12%; height: 1px; background: rgba(244,237,224,0.2); }
+    .step { padding: 0 1.5rem; }
+    .step-num { width: 4rem; height: 4rem; border-radius: 50%; background: var(--terra); color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+    .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--cream); margin-bottom: 0.7rem; }
+    .step-desc { font-size: 0.82rem; line-height: 1.6; color: var(--warm-gray); font-weight: 300; }
+
+    /* SERVICIOS */
+    .servicios { background: var(--white); }
+    .servicios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+    .servicio-card { padding: 2.5rem 2rem; background: var(--linen); border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.25s; }
+    .servicio-card:hover { transform: translateY(-5px); }
+    .servicio-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--terra); transform: scaleX(0); transition: transform 0.3s; }
+    .servicio-card:hover::after { transform: scaleX(1); }
+    .servicio-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; color: var(--terra); }
+    .servicio-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
+    .servicio-desc { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+
+    /* IMPACTO */
+    .impacto { background: var(--terra); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .impacto .section-label { color: rgba(244,237,224,0.6); }
+    .impacto .section-title { color: var(--cream); }
+    .impacto .section-title em { color: rgba(244,237,224,0.7); }
+    .impacto .section-lead { color: rgba(244,237,224,0.75); }
+    .impacto-list { list-style: none; }
+    .impacto-list li { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(244,237,224,0.2); color: var(--cream); font-size: 1rem; line-height: 1.5; }
+    .impacto-list li:last-child { border-bottom: none; }
+    .check { width: 1.4rem; height: 1.4rem; border: 1.5px solid rgba(244,237,224,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; margin-top: 0.1rem; }
+
+    /* FOUNDERS */
+    .founders { background: var(--cream); }
+    .founders-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: center; }
+    .founders-photo-wrap { position: relative; }
+    .founders-photo-wrap::before { content: ''; position: absolute; top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem; background: var(--linen); border-radius: 2px; z-index: 0; }
+    .founders-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 2px; position: relative; z-index: 1; filter: sepia(10%) contrast(1.02); }
+    .founders-names { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--terra); margin-bottom: 1.2rem; text-transform: uppercase; }
+    .founders-bio { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1.5rem; }
+    .founders-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; line-height: 1.4; color: var(--navy); border-left: 3px solid var(--terra); padding-left: 1.5rem; }
+
+    /* CONTACTO */
+    .contacto { background: var(--navy); display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+    .contacto .section-label { color: var(--warm-gray); }
+    .contacto .section-title { color: var(--cream); }
+    .contacto .section-title em { color: var(--warm-gray); }
+    .contacto .section-lead { color: rgba(244,237,224,0.55); margin-bottom: 2.5rem; }
+    .clinks { display: flex; flex-direction: column; gap: 1rem; }
+    .clink { display: flex; align-items: center; gap: 1rem; color: var(--warm-gray); text-decoration: none; font-size: 0.9rem; transition: color 0.2s, gap 0.2s; }
+    .clink:hover { color: var(--cream); gap: 1.4rem; }
+    .clink-ico { width: 2rem; height: 2rem; background: rgba(244,237,224,0.07); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; border: 1px solid rgba(244,237,224,0.12); }
+    .cform { display: flex; flex-direction: column; gap: 1.2rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+    .fg label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,237,224,0.38); }
+    .fg input, .fg textarea, .fg select { background: rgba(244,237,224,0.06); border: 1px solid rgba(244,237,224,0.14); color: var(--cream); padding: 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; width: 100%; transition: border-color 0.2s; border-radius: 1px; -webkit-appearance: none; }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(244,237,224,0.25); }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--terra-lt); }
+    .fg textarea { resize: vertical; min-height: 7rem; }
+    .fg select option { background: var(--navy); color: var(--cream); }
+    .btn-submit { background: var(--terra); color: var(--cream); padding: 1rem; border: none; cursor: pointer; width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; border-radius: 1px; margin-top: 0.3rem; }
+    .btn-submit:hover { background: var(--terra-lt); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-success { display: none; background: rgba(122,62,50,0.25); border: 1px solid rgba(158,84,68,0.5); color: var(--cream); padding: 1.4rem 1.6rem; font-size: 0.92rem; line-height: 1.65; border-radius: 1px; }
+
+    /* FOOTER */
+    footer { background: #111b28; padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo img { height: 1.6rem; width: auto; display: block; opacity: 0.7; }
+    .footer-copy { font-size: 0.75rem; color: rgba(200,188,172,0.4); letter-spacing: 0.05em; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { transform: scale(1.06); } to { transform: scale(1); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav.scrolled { padding: 0.9rem 2rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 2rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: block; height: 280px; padding: 0; }
+      .hero-right::before { background: linear-gradient(to bottom, var(--navy) 0%, transparent 30%), linear-gradient(to top, var(--navy) 0%, transparent 30%); }
+      .hero-img { border-radius: 0; object-position: center 30%; }
+      .hero-tagline { display: none; }
+      .hero-left { padding: 8rem 2rem 3rem; }
+      .propuesta, .impacto, .contacto, .founders-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .propuesta-pillars { grid-template-columns: 1fr; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .proceso-steps::before { display: none; }
+      .servicios-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .founders-photo-wrap::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a class="nav-logo" href="#">
+      <img src="images/logo_horizontal.png" alt="Equisé" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#propuesta">Propuesta</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="nav-cta">Conversemos</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Consultoría de RRHH & Estrategia Organizacional</p>
+      <h1 class="hero-title">Personas que<br><em>transforman</em><br>organizaciones.</h1>
+      <p class="hero-sub"> Transformamos visión en procesos con estructura, adaptados a cada 
+cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordenar, decidir y avanzar. Trabajamos sobre los procesos, los vínculos y las personas para que las decisiones se traduzcan en resultados reales y sostenibles.</p>
+         
+<div class="hero-actions">
+        <a href="#contacto" class="btn-primary">Conversemos</a>
+        <a href="#propuesta" class="btn-ghost">Cómo trabajamos</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img class="hero-img" src="images/hero.webp" alt="Equipo trabajando" />
+      <p class="hero-tagline">"Ideas en acción.<br>Decisiones con criterio y cuidado."</p>
+    </div>
+  </section>
+
+  <!-- PROPUESTA -->
+  <section class="propuesta" id="propuesta">
+    <div class="reveal">
+      <span class="section-label">Nuestro aporte</span>
+      <div class="rule"></div>
+      <h2 class="section-title">Transformamos visión<br>en <em>procesos reales</em>.</h2>
+      <p class="section-lead">Acompañamos a organizaciones y líderes a ordenar, decidir y avanzar. Trabajamos sobre los procesos, los vínculos y las personas para que las decisiones se traduzcan en resultados reales y sostenibles.</p>
+    </div>
+    <div class="propuesta-pillars">
+      <div class="pillar reveal reveal-delay-1">
+        <p class="pillar-title">Aliados estratégicos</p>
+        <p class="pillar-text">En procesos organizacionales, desde la lectura del contexto hasta la implementación.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <p class="pillar-title">Traductores</p>
+        <p class="pillar-text">Entre visión, cultura y estructura. Bajamos las ideas al terreno concreto.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-3">
+        <p class="pillar-title">Acompañantes</p>
+        <p class="pillar-text">De procesos sensibles con personas, con empatía y rigor profesional.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-4">
+        <p class="pillar-title">Facilitadores de claridad</p>
+        <p class="pillar-text">En los momentos de decisión que más importan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso">
+    <span class="section-label reveal">Cómo trabajamos</span>
+    <h2 class="section-title reveal">Cuatro momentos claros.</h2>
+    <p class="section-lead reveal">Un proceso adaptado a cada cultura y momento particular.</p>
+    <div class="proceso-steps">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <p class="step-title">Lectura de Contexto</p>
+        <p class="step-desc">Personas, cultura, historia y momento real.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <p class="step-title">Priorización y Orden</p>
+        <p class="step-desc">Bajamos la visión en procesos concretos.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <p class="step-title">Definiciones Conjuntas</p>
+        <p class="step-desc">Qué se hace, cómo y quién lo sostiene.</p>
+      </div>
+      <div class="step reveal reveal-delay-4">
+        <div class="step-num">04</div>
+        <p class="step-title">Implementación</p>
+        <p class="step-desc">Lo trabajado se traduce en acción.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <span class="section-label reveal">Qué hacemos</span>
+    <div class="rule reveal"></div>
+    <h2 class="section-title reveal">Un enfoque integral:<br><em>personas, cultura, estructura.</em></h2>
+    <p class="section-lead reveal">Donde hay personas trabajando, acompañamos y actuamos. Una red de talentos y profesionales se activa según la necesidad de cada cliente.</p>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal reveal-delay-1">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Reclutamiento y Selección</p>
+        <p class="servicio-desc">El inicio real de toda organización. No se trata solo de cubrir posiciones, sino de elegir personas que puedan sostener el crecimiento, la cultura y los resultados del negocio. Acompañamos el proceso completo para que la decisión sea clara y sostenible.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-2">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Gestión de Personas</p>
+        <p class="servicio-desc">Crecer implica ordenar lo que antes alcanzaba. Acompañamos organizaciones en expansión, empresas que buscan profesionalizar su área de personas y equipos de RRHH que quieren estructurar y potenciar su impacto.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-3">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Eventos y Cultura</p>
+        <p class="servicio-desc">Los equipos no se ordenan solos. Diseñamos workshops experienciales, espacios de bienestar y eventos de inicio o cierre de ciclo. Combinamos metodologías lúdicas, artísticas y creativas para habilitar claridad, alineación y decisiones.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-1">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Procesos y Automatización</p>
+        <p class="servicio-desc">Decisiones ágiles basadas en datos. Implementamos sistemas ATS, analizamos cómo estás gestionando hoy y diseñamos indicadores y herramientas adaptadas a tu realidad para sostenerlos con el equipo.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-2">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Formación y Capacitación</p>
+        <p class="servicio-desc">A medida de cada equipo y momento. Armamos capacitaciones para líderes y equipos de RRHH, trabajando las competencias que cada organización necesita fortalecer en su etapa particular.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-3">
+        <span class="servicio-icon">◈</span>
+        <p class="servicio-title">Gestión de Desempeño</p>
+        <p class="servicio-desc">Resultados medibles y feedback real. Diseñamos sistemas de evaluación y desarrollo que alinean expectativas, construyen cultura de feedback sostenible y generan impacto directo en los resultados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTO -->
+  <section class="impacto">
+    <div class="reveal">
+      <span class="section-label">El resultado</span>
+      <div class="rule"></div>
+      <h2 class="section-title">¿Qué cambia cuando<br><em>trabajamos juntos?</em></h2>
+      <p class="section-lead">El impacto se siente en las personas y se refleja en los resultados.</p>
+    </div>
+    <ul class="impacto-list reveal">
+      <li><span class="check">✓</span>Menos fricción en los procesos y en los vínculos.</li>
+      <li><span class="check">✓</span>Más foco en lo que realmente importa.</li>
+      <li><span class="check">✓</span>Decisiones más claras y más rápidas.</li>
+      <li><span class="check">✓</span>Equipos alineados detrás de un objetivo común.</li>
+      <li><span class="check">✓</span>Ritmos de trabajo más sanos y sostenibles.</li>
+    </ul>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section class="founders" id="nosotros">
+    <div class="founders-inner">
+      <div class="founders-photo-wrap reveal">
+        <img class="founders-photo" src="images/founders.webp" alt="Eduardo Asilian y Ximena Pecile, fundadores de Equisé" />
+      </div>
+      <div class="reveal">
+        <span class="section-label">Quiénes somos</span>
+        <p class="founders-names">Eduardo Asilian · Ximena Pecile</p>
+        <div class="rule"></div>
+        <p class="founders-bio">Colegas de trabajo, amigos y socios, con más de 20 años de experiencia liderando equipos y áreas de RRHH en organizaciones de distintos tamaños y sectores.</p>
+        <p class="founders-bio">Fundamos Equisé con la convicción de que los resultados que obtenemos dependen en gran medida de las personas y su capacidad para cooperar. Cuando se trabaja con integridad, claridad de criterio, empatía y armonía, tanto individuos como organizaciones son capaces de mostrar la mejor versión de sí mismos, y ese precisamente es el propósito que nos guía.</p>
+        <blockquote class="founders-quote">"Cada organización tiene su mejor versión.<br>Nosotros te acompañamos a encontrarla."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="reveal">
+      <span class="section-label">Hablemos</span>
+      <div class="rule"></div>
+      <h2 class="section-title">¿Listo para<br>ordenar, decidir<br><em>y avanzar?</em></h2>
+      <p class="section-lead">Si sentís que es momento de trabajar mejor con tu equipo, nos encantaría ser parte de ese proceso.</p>
+      <div class="clinks">
+        <a href="mailto:info@equise.com.ar" class="clink"><div class="clink-ico">@</div>info@equise.com.ar</a>
+        <a href="https://www.equise.com.ar" class="clink"><div class="clink-ico">↗</div>www.equise.com.ar</a>
+        <a href="https://instagram.com/equise.ok" class="clink"><div class="clink-ico">◈</div>@equise.ok</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div id="form-success" class="form-success">✓ &nbsp;Mensaje enviado. Te respondemos a la brevedad.</div>
+      <form class="cform" id="contact-form">
+        <div class="fg">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre completo" required />
+        </div>
+        <div class="fg">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="tu@empresa.com" required />
+        </div>
+        <div class="fg">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" name="telefono" type="tel" placeholder="+54 9 11 1234-5678" pattern="[\+\d\s\-\(\)]{7,20}" required />
+        </div>
+        <div class="fg">
+          <label for="servicio">¿En qué podemos ayudarte?</label>
+          <select id="servicio" name="servicio">
+            <option value="">Seleccioná un servicio</option>
+            <option>Reclutamiento y Selección</option>
+            <option>Acompañamiento a PyMEs</option>
+            <option>Mejora de Equipos</option>
+            <option>Eventos y Encuentros</option>
+            <option>Otro / Consulta general</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente qué está pasando en tu organización..." required></textarea>
+        </div>
+        <!-- Honeypot anti-spam: invisible para usuarios humanos -->
+        <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+        <button type="submit" class="btn-submit" id="btn-submit">Enviar mensaje →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-logo"><img src="images/logo_horizontal.png" alt="Equisé" /></p>
+    <p class="footer-copy">www.equise.com.ar · Buenos Aires, Argentina</p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // NAV
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // REVEAL ON SCROLL
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FORMULARIO
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz541tG8zYyeWcANdON1BHbL3e5G9fGPyHHD2jPBTKqlUtm00ZTZk2YWw9orEEuOKYV/exec';
+
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('form-success');
+    const btnSubmit = document.getElementById('btn-submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btnSubmit.textContent = 'Enviando...';
+      btnSubmit.disabled = true;
+
+      const payload = {
+        nombre:    form.nombre.value,
+        email:     form.email.value,
+        telefono:  form.telefono.value,
+        servicio:  form.servicio.value,
+        mensaje:   form.mensaje.value,
+        _honeypot: form._honeypot.value,
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } catch {
+        btnSubmit.textContent = 'Algo salió mal. Intentá de nuevo.';
+        btnSubmit.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
