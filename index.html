@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://js.hsforms.net/forms/embed/51373412.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -117,6 +118,7 @@
 
     /* CONTACTO */
     .contacto { background: var(--navy); display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+    .hs-card { background: var(--cream); border-radius: 12px; padding: 2.5rem; }
     .contacto .section-label { color: var(--warm-gray); }
     .contacto .section-title { color: var(--cream); }
     .contacto .section-title em { color: var(--warm-gray); }
@@ -353,39 +355,9 @@ cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordena
       </div>
     </div>
     <div class="reveal">
-      <div id="form-success" class="form-success">✓ &nbsp;Mensaje enviado. Te respondemos a la brevedad.</div>
-      <form class="cform" id="contact-form">
-        <div class="fg">
-          <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre completo" required />
-        </div>
-        <div class="fg">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="tu@empresa.com" required />
-        </div>
-        <div class="fg">
-          <label for="telefono">Teléfono</label>
-          <input id="telefono" name="telefono" type="tel" placeholder="+54 9 11 1234-5678" pattern="[\+\d\s\-\(\)]{7,20}" required />
-        </div>
-        <div class="fg">
-          <label for="servicio">¿En qué podemos ayudarte?</label>
-          <select id="servicio" name="servicio">
-            <option value="">Seleccioná un servicio</option>
-            <option>Reclutamiento y Selección</option>
-            <option>Acompañamiento a PyMEs</option>
-            <option>Mejora de Equipos</option>
-            <option>Eventos y Encuentros</option>
-            <option>Otro / Consulta general</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente qué está pasando en tu organización..." required></textarea>
-        </div>
-        <!-- Honeypot anti-spam: invisible para usuarios humanos -->
-        <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
-        <button type="submit" class="btn-submit" id="btn-submit">Enviar mensaje →</button>
-      </form>
+      <div class="hs-card">
+        <div class="hs-form-frame" data-region="na1" data-form-id="c75a0926-65cb-4aa9-84b1-c63ce5d1b205" data-portal-id="51373412"></div>
+      </div>
     </div>
   </section>
 
@@ -409,41 +381,7 @@ cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordena
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FORMULARIO
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz541tG8zYyeWcANdON1BHbL3e5G9fGPyHHD2jPBTKqlUtm00ZTZk2YWw9orEEuOKYV/exec';
 
-    const form = document.getElementById('contact-form');
-    const successMsg = document.getElementById('form-success');
-    const btnSubmit = document.getElementById('btn-submit');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      btnSubmit.textContent = 'Enviando...';
-      btnSubmit.disabled = true;
-
-      const payload = {
-        nombre:    form.nombre.value,
-        email:     form.email.value,
-        telefono:  form.telefono.value,
-        servicio:  form.servicio.value,
-        mensaje:   form.mensaje.value,
-        _honeypot: form._honeypot.value,
-      };
-
-      try {
-        await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      } catch {
-        btnSubmit.textContent = 'Algo salió mal. Intentá de nuevo.';
-        btnSubmit.disabled = false;
-      }
-    });
   </script>
 </body>
 </html>
