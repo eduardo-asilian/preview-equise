@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reclutamiento y Selección — Equisé</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #28374a;
+    --navy-dk: #1e2c3a;
+    --terra:   #754437;
+    --terra-lt:#8f5446;
+    --cream:   #e5e2d7;
+    --cream-lt:#f2f0ea;
+    --cream-dk:#cac6b8;
+    --white:   #ffffff;
+    --text:    #3a4a58;
+    --muted:   #7a8a96;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream-lt);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 4px;
+    text-decoration: none;
+  }
+  .nav-tagline {
+    font-size: 11px;
+    color: var(--cream-dk);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 100px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--terra);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -120px; top: -120px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(117,68,55,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-label {
+    font-size: 10px;
+    color: var(--terra);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    color: var(--terra);
+    font-style: italic;
+  }
+  .hero-body {
+    font-size: 17px;
+    color: var(--cream-dk);
+    line-height: 1.75;
+    max-width: 620px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-body strong { color: var(--cream); font-weight: 500; }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    background: var(--terra);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 20px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 80px 60px;
+  }
+  .section.alt { background: var(--cream); }
+  .section.dark { background: var(--navy); }
+
+  .section-header {
+    margin-bottom: 52px;
+  }
+  .sec-label {
+    font-size: 10px;
+    color: var(--terra);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .sec-label.light { color: rgba(229,226,215,0.5); }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .sec-title.light { color: var(--white); }
+  .sec-intro {
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+  .sec-intro.light { color: var(--cream-dk); }
+
+  /* ── PRODUCT CARDS ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-top: 4px solid var(--terra);
+    padding: 40px 36px 44px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(40,55,74,0.12);
+  }
+
+  .product-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--cream-dk);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .product-subtitle {
+    font-size: 13px;
+    color: var(--terra);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .product-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--terra);
+    margin-bottom: 20px;
+    opacity: 0.4;
+  }
+  .product-body {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .feature-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .feature-list li::before {
+    content: '—';
+    color: var(--terra);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .product-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream-lt);
+    border: 1px solid var(--cream-dk);
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terra);
+    flex-shrink: 0;
+  }
+
+  /* ── HOW WE WORK ── */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(229,226,215,0.15);
+    margin-top: 40px;
+  }
+  .step {
+    background: rgba(255,255,255,0.05);
+    padding: 32px 24px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .step:hover { border-left-color: var(--terra); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--terra);
+    opacity: 0.6;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .step-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+  .step-body {
+    font-size: 13px;
+    color: var(--cream-dk);
+    line-height: 1.65;
+  }
+
+  /* ── GUARANTEE ── */
+  .guarantee-box {
+    background: var(--navy);
+    padding: 40px 44px;
+    border-left: 5px solid var(--terra);
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .guarantee-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .guarantee-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .guarantee-body {
+    font-size: 14px;
+    color: var(--cream-dk);
+    line-height: 1.7;
+  }
+
+  /* ── DIFFERENCE ── */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .diff-item {
+    background: var(--white);
+    padding: 28px 24px;
+    border-bottom: 2px solid var(--terra);
+  }
+  .diff-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .diff-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .diff-body {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--terra);
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    right: -100px; bottom: -100px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(117,68,55,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-label {
+    font-size: 10px;
+    color: var(--terra);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 5vw, 46px);
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .cta-sub {
+    font-size: 16px;
+    color: var(--cream-dk);
+    margin-bottom: 44px;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .contacts-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-block {
+    text-align: left;
+  }
+  .contact-name {
+    font-size: 10px;
+    color: var(--terra);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .contact-detail {
+    font-size: 15px;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .contact-detail:hover { color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--terra);
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+  .footer-links {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-label { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.25s; }
+  .hero-body  { animation-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav, .hero, .section, .cta-section, footer {
+      padding-left: 28px; padding-right: 28px;
+    }
+    .products-grid, .diff-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .stat-strip { flex-wrap: wrap; padding: 20px 28px; gap: 16px; }
+    .stat-item { border-right: none; }
+    .contacts-row { gap: 28px; }
+    .guarantee-box { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">EQUISÉ</a>
+  <div class="nav-tagline">Personas que transforman organizaciones</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Servicio · Reclutamiento y Selección</div>
+    <h1 class="hero-title">
+      Incorporar bien<br>es la primera<br><em>decisión cultural.</em>
+    </h1>
+    <p class="hero-body">
+      No se trata de cubrir una posición. Se trata de elegir a alguien que pueda 
+      sostener el crecimiento, la cultura y los resultados del negocio. 
+      <strong>Eso es lo que hacemos.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item">
+    <span class="stat-num">30–150%</span>
+    <span class="stat-label">del salario anual cuesta una mala incorporación</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">90 días</span>
+    <span class="stat-label">de acompañamiento post-ingreso incluidos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">+20 años</span>
+    <span class="stat-label">de experiencia en selección y gestión de personas</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section alt">
+  <div class="section-header">
+    <div class="sec-label">Lo que ofrecemos</div>
+    <h2 class="sec-title">Dos modalidades.<br>Un mismo criterio.</h2>
+    <p class="sec-intro">Según el momento y la necesidad de tu organización, trabajamos de dos formas distintas — siempre con la misma mirada de fondo.</p>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- PRODUCTO 1 -->
+    <div class="product-card">
+      <div class="product-num">01</div>
+      <h3 class="product-title">Proceso de Selección Punta a Punta</h3>
+      <div class="product-subtitle">Búsqueda y staffing con acompañamiento completo</div>
+      <div class="product-divider"></div>
+      <p class="product-body">
+        Nos hacemos cargo del proceso completo: desde entender en profundidad qué necesita 
+        la organización hasta acompañar el ingreso y la definición de condiciones de contratación. 
+        No buscamos candidatos — encontramos a la persona correcta para ese contexto específico.
+      </p>
+      <ul class="feature-list">
+        <li>Lectura de contexto: cultura real, momento del negocio y equipo donde ingresará la persona</li>
+        <li>Relevamiento y definición del perfil — técnico, cultural y de liderazgo</li>
+        <li>Ajuste de estrategia y canales de búsqueda según el perfil requerido</li>
+        <li>Entrevistas en profundidad por competencias</li>
+        <li>Relevamiento de experiencias previas y verificación de referencias</li>
+        <li>Informe de candidatos con evaluación comparativa y recomendación fundamentada</li>
+        <li>Acompañamiento en el proceso de ingreso y negociación de condiciones</li>
+        <li>Seguimiento durante los primeros 90 días</li>
+      </ul>
+      <div class="product-badge">
+        <div class="badge-dot"></div>
+        Incluye garantía de búsqueda
+      </div>
+    </div>
+
+    <!-- PRODUCTO 2 -->
+    <div class="product-card">
+      <div class="product-num">02</div>
+      <h3 class="product-title">Acompañamiento al Área de Selección</h3>
+      <div class="product-subtitle">Intervención y mejora del proceso interno de RRHH</div>
+      <div class="product-divider"></div>
+      <p class="product-body">
+        Para equipos de RRHH que hacen sus propias búsquedas pero necesitan mejorar el proceso: 
+        reducir tiempos, mejorar la calidad de las incorporaciones y entender por qué no encuentran 
+        o no retienen a las personas que necesitan.
+      </p>
+      <ul class="feature-list">
+        <li>Diagnóstico del proceso actual: dónde se pierde tiempo y calidad</li>
+        <li>Revisión de perfiles y análisis de causas de rotación o dificultad de incorporación</li>
+        <li>Diseño de indicadores: time-to-hire, time-to-floor, calidad a 90 días, ROI del proceso</li>
+        <li>Evaluación y selección de sistemas adecuados (ATS) para la realidad del equipo</li>
+        <li>Implementación y configuración de herramientas de gestión del proceso</li>
+        <li>Capacitación de reclutadores: entrevistas por competencias, evaluación y criterios</li>
+        <li>Acompañamiento en búsquedas reales como práctica supervisada</li>
+      </ul>
+      <div class="product-badge">
+        <div class="badge-dot"></div>
+        Resultado: un área que selecciona mejor sola
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="section dark">
+  <div class="section-header">
+    <div class="sec-label light">Cómo trabajamos</div>
+    <h2 class="sec-title light">El proceso detrás de cada búsqueda.</h2>
+    <p class="sec-intro light">Antes de buscar a nadie, entendemos qué necesita realmente la organización. Ese es el paso que la mayoría saltea — y el que más impacta en el resultado.</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Lectura de Contexto</div>
+      <div class="step-body">Entendemos la cultura real, el momento del negocio, el equipo y el liderazgo con el que va a trabajar la persona.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Definición del Perfil</div>
+      <div class="step-body">Co-construimos el perfil con el cliente: no solo competencias técnicas, sino lo que realmente se necesita para que funcione en ese contexto específico.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Búsqueda y Evaluación</div>
+      <div class="step-body">Ajustamos la estrategia y los canales según el perfil. Entrevistas en profundidad por competencias, verificación de referencias y análisis comparativo.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Acompañamiento al Ingreso</div>
+      <div class="step-body">Acompañamos la decisión final, la negociación de condiciones y el proceso de ingreso. Hacemos seguimiento durante los primeros 90 días.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section alt">
+  <div class="guarantee-box">
+    <div class="guarantee-icon">✦</div>
+    <div>
+      <div class="guarantee-title">Garantía de búsqueda</div>
+      <div class="guarantee-body">
+        Todas nuestras búsquedas incluyen garantía. Si la incorporación no funciona dentro del período acordado, 
+        reiniciamos el proceso sin costo adicional. No porque sea un requisito comercial — sino porque 
+        confiamos en nuestro criterio y nos hacemos cargo del resultado.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENCE -->
+<section class="section">
+  <div class="section-header">
+    <div class="sec-label">Por qué Equisé</div>
+    <h2 class="sec-title">Lo que nos diferencia.</h2>
+  </div>
+
+  <div class="diff-grid">
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Mirada generalista de RRHH</div>
+      <div class="diff-body">No somos solo reclutadores. Venimos de gestionar equipos, construir cultura y diseñar procesos. Eso nos permite ver cosas que un proceso estándar no ve.</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Visión de negocio integrada</div>
+      <div class="diff-body">Evaluamos a las personas en función del contexto real del negocio — no de un perfil de puesto genérico. La incorporación tiene que funcionar ahora y en los próximos meses.</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Sin plantillas genéricas</div>
+      <div class="diff-body">Cada búsqueda parte de un diagnóstico real. Ajustamos la estrategia, los medios y los criterios de evaluación a la realidad de cada organización.</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Criterio técnico sólido</div>
+      <div class="diff-body">Más de 20 años de experiencia directa en selección, en distintos sectores, tamaños y contextos. No aprendemos en tu búsqueda.</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Acompañamiento real</div>
+      <div class="diff-body">Estamos en todo el proceso: desde la definición del perfil hasta los 90 días post-ingreso. El resultado importa más que cerrar la búsqueda.</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">◎</div>
+      <div class="diff-title">Dos personas, no una firma</div>
+      <div class="diff-body">Trabajás directamente con los fundadores. No hay intermediarios ni equipos que no conocen tu realidad. La responsabilidad es nuestra desde el principio.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-label">Empezamos con una conversación</div>
+  <h2 class="cta-title">¿Tenés una posición crítica<br>o un proceso que no cierra?</h2>
+  <p class="cta-sub">Sin formularios. 30 minutos para entender tu realidad y ver si podemos ayudarte.</p>
+
+  <div class="contacts-row">
+    <div class="contact-block">
+      <div class="contact-name">Ximena Pecile</div>
+      <a class="contact-detail" href="tel:+541144187806">+54 11 4418 7806</a>
+    </div>
+    <div class="contact-block">
+      <div class="contact-name">Eduardo Asilian</div>
+      <a class="contact-detail" href="tel:+541130202555">+54 11 3020 2555</a>
+    </div>
+    <div class="contact-block">
+      <div class="contact-name">Email</div>
+      <a class="contact-detail" href="mailto:info@equise.com.ar">info@equise.com.ar</a>
+    </div>
+    <div class="contact-block">
+      <div class="contact-name">Web</div>
+      <a class="contact-detail" href="https://www.equise.com.ar" target="_blank">www.equise.com.ar</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EQUISÉ</div>
+  <div class="footer-links">@equise.ok &nbsp;·&nbsp; linkedin.com/company/equise-ok &nbsp;·&nbsp; Buenos Aires, Argentina</div>
+</footer>
+
+</body>
+</html>

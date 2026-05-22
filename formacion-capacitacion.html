@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación y Capacitación — Equisé</title>
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#28374a; --navy-dk:#1e2c3a; --terra:#754437; --terra-lt:#8f5446; --cream:#e5e2d7; --cream-lt:#f2f0ea; --cream-dk:#cac6b8; --warm-gray:#c8bcac; --white:#ffffff; --text:#3a4a58; --muted:#7a8a96; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream-lt); color:var(--text); line-height:1.6; }
+  nav { background:var(--navy); padding:0 60px; height:70px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+  .nav-logo { display:flex; align-items:center; text-decoration:none; }
+  .nav-logo img { height:1.8rem; width:auto; display:block; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+  .nav-links>li>a { font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-gray); text-decoration:none; transition:color 0.2s; }
+  .nav-links>li>a:hover { color:var(--cream); }
+  .nav-cta { color:var(--cream)!important; border:1px solid rgba(244,237,224,0.35); padding:0.45rem 1.1rem; border-radius:2px; }
+  .nav-cta:hover { background:rgba(244,237,224,0.08)!important; }
+  .nav-dropdown { position:relative; }
+  .nav-dropdown-toggle { background:none; border:none; padding:0; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-gray); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
+  .nav-dropdown-toggle:hover { color:var(--cream); }
+  .dropdown-arrow { display:inline-block; font-size:0.6rem; transition:transform 0.25s; }
+  .nav-dropdown.open .dropdown-arrow { transform:rotate(180deg); }
+  .dropdown-menu { position:absolute; top:calc(100% + 1rem); left:50%; transform:translateX(-50%) translateY(-6px); background:rgba(20,34,54,0.98); backdrop-filter:blur(12px); border-top:2px solid var(--terra); border-radius:0 0 4px 4px; min-width:240px; list-style:none; opacity:0; visibility:hidden; transition:opacity 0.22s,visibility 0.22s,transform 0.22s; z-index:200; box-shadow:0 20px 50px rgba(0,0,0,0.35); }
+  .nav-dropdown.open .dropdown-menu { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .dropdown-menu li a { display:block; padding:0.85rem 1.4rem; font-size:0.78rem; letter-spacing:0.05em; text-transform:none; color:var(--warm-gray); text-decoration:none; border-bottom:1px solid rgba(244,237,224,0.07); transition:color 0.18s,background 0.18s,padding-left 0.18s; }
+  .dropdown-menu li:last-child a { border-bottom:none; }
+  .dropdown-menu li a:hover { color:var(--cream); background:rgba(244,237,224,0.06); padding-left:1.7rem; }
+  .dropdown-menu li a.active { color:var(--cream); border-left:2px solid var(--terra); }
+  .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; z-index:200; }
+  .nav-hamburger span { display:block; width:22px; height:1.5px; background:var(--warm-gray); border-radius:1px; transition:transform 0.25s,opacity 0.25s; }
+  .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity:0; }
+  .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { position:fixed; inset:0; background:rgba(20,34,54,0.99); z-index:99; padding:5rem 2.5rem 2rem; overflow-y:auto; opacity:0; visibility:hidden; transition:opacity 0.3s,visibility 0.3s; }
+  .mobile-menu.open { opacity:1; visibility:visible; }
+  .mobile-links { list-style:none; }
+  .mobile-links>li { border-bottom:1px solid rgba(244,237,224,0.1); }
+  .mobile-link { display:block; padding:1.2rem 0; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-gray); text-decoration:none; transition:color 0.2s; }
+  .mobile-link:hover { color:var(--cream); }
+  .mobile-cta-wrap { padding:1.5rem 0 0; }
+  .mobile-link.mobile-cta { display:inline-block; color:var(--cream); border:1px solid rgba(244,237,224,0.35); padding:0.9rem 1.8rem; border-radius:2px; letter-spacing:0.12em; margin-top:0.5rem; }
+  .mobile-accordion-toggle { width:100%; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-gray); padding:1.2rem 0; text-align:left; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:color 0.2s; }
+  .mobile-accordion-toggle:hover { color:var(--cream); }
+  .mobile-arrow { font-size:0.6rem; transition:transform 0.25s; }
+  .mobile-accordion-item.open .mobile-arrow { transform:rotate(180deg); }
+  .mobile-accordion-body { list-style:none; max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+  .mobile-accordion-item.open .mobile-accordion-body { max-height:500px; }
+  .mobile-accordion-body li a { display:block; padding:0.8rem 0 0.8rem 1rem; font-size:0.88rem; color:rgba(200,188,172,0.65); text-decoration:none; border-bottom:1px solid rgba(244,237,224,0.05); transition:color 0.2s; }
+  .mobile-accordion-body li a:hover { color:var(--cream); }
+  .hero { background:var(--navy); padding:80px 60px 70px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--terra); }
+  .hero::after { content:''; position:absolute; right:-100px; top:-100px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(117,68,55,0.1) 0%,transparent 70%); pointer-events:none; }
+  .hero-inner { max-width:800px; position:relative; z-index:1; }
+  .hero-label { font-size:10px; color:var(--terra); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:20px; }
+  .hero-title { font-family:'Playfair Display',serif; font-size:clamp(38px,6vw,62px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:22px; }
+  .hero-title em { color:var(--terra); font-style:italic; }
+  .hero-body { font-size:17px; color:var(--cream-dk); line-height:1.75; max-width:620px; margin-bottom:36px; font-weight:300; }
+  .hero-body strong { color:var(--cream); font-weight:500; }
+  .stat-strip { background:var(--terra); padding:28px 60px; display:flex; align-items:center; }
+  .stat-item { flex:1; text-align:center; padding:0 20px; border-right:1px solid rgba(255,255,255,0.2); }
+  .stat-item:last-child { border-right:none; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--white); display:block; line-height:1; margin-bottom:4px; }
+  .stat-label { font-size:11px; color:rgba(255,255,255,0.75); text-transform:uppercase; letter-spacing:1px; }
+  .section { padding:80px 60px; }
+  .section.alt { background:var(--cream); }
+  .section.dark { background:var(--navy); }
+  .section-header { margin-bottom:52px; }
+  .sec-label { font-size:10px; color:var(--terra); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:10px; }
+  .sec-label.light { color:rgba(229,226,215,0.5); }
+  .sec-title { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,36px); color:var(--navy); font-weight:700; line-height:1.2; }
+  .sec-title.light { color:var(--white); }
+  .sec-intro { font-size:16px; color:var(--muted); margin-top:12px; max-width:600px; line-height:1.7; }
+  .sec-intro.light { color:var(--cream-dk); }
+  .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .product-card { background:var(--white); border-top:4px solid var(--terra); padding:40px 36px 44px; transition:transform 0.3s,box-shadow 0.3s; }
+  .product-card:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(40,55,74,0.12); }
+  .product-num { font-family:'Playfair Display',serif; font-size:50px; font-weight:900; color:var(--cream-dk); line-height:1; margin-bottom:14px; }
+  .product-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--navy); line-height:1.25; margin-bottom:8px; }
+  .product-subtitle { font-size:13px; color:var(--terra); font-weight:500; font-style:italic; margin-bottom:20px; }
+  .product-divider { width:40px; height:2px; background:var(--terra); margin-bottom:20px; opacity:0.4; }
+  .product-body { font-size:14.5px; color:var(--text); line-height:1.75; margin-bottom:28px; }
+  .feature-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+  .feature-list li { font-size:13.5px; color:var(--text); line-height:1.55; padding-left:18px; position:relative; }
+  .feature-list li::before { content:'—'; position:absolute; left:0; color:var(--terra); font-size:11px; top:2px; }
+  .product-badge { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--terra); font-weight:500; padding-top:20px; border-top:1px solid rgba(117,68,55,0.15); }
+  .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--terra); flex-shrink:0; }
+  .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .step { background:rgba(255,255,255,0.05); border:1px solid rgba(229,226,215,0.1); padding:32px 24px; border-radius:2px; }
+  .step-num { font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--terra); line-height:1; margin-bottom:14px; }
+  .step-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:10px; }
+  .step-body { font-size:13.5px; color:var(--cream-dk); line-height:1.65; }
+  .diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .diff-item { padding:28px 24px; border:1px solid rgba(40,55,74,0.1); border-top:3px solid var(--terra); transition:transform 0.25s,box-shadow 0.25s; }
+  .diff-item:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(40,55,74,0.08); }
+  .diff-icon { font-size:22px; color:var(--terra); margin-bottom:12px; }
+  .diff-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+  .diff-body { font-size:13.5px; color:var(--muted); line-height:1.65; }
+  .cta-section { background:var(--navy-dk); padding:80px 60px; text-align:center; }
+  .cta-label { font-size:10px; color:var(--terra); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:16px; }
+  .cta-title { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--white); line-height:1.2; margin-bottom:14px; }
+  .cta-sub { font-size:15px; color:var(--cream-dk); margin-bottom:40px; }
+  .contacts-row { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
+  .contact-block { text-align:center; }
+  .contact-name { font-size:11px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .contact-detail { font-size:15px; color:var(--cream); text-decoration:none; transition:color 0.2s; }
+  .contact-detail:hover { color:var(--terra); }
+  footer { background:#111b28; padding:1.8rem 60px; display:flex; align-items:center; justify-content:space-between; }
+  .footer-logo img { height:1.5rem; width:auto; opacity:0.7; }
+  .footer-copy { font-size:0.75rem; color:rgba(200,188,172,0.4); letter-spacing:0.05em; }
+  @media (max-width:900px) {
+    nav { padding:0 28px; } .nav-links { display:none; } .nav-hamburger { display:flex; }
+    .hero,.section,.cta-section { padding-left:28px; padding-right:28px; }
+    .products-grid,.diff-grid { grid-template-columns:1fr; }
+    .steps-grid { grid-template-columns:1fr 1fr; }
+    .stat-strip { flex-wrap:wrap; padding:20px 28px; gap:16px; }
+    .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; }
+    .stat-item:last-child { border-bottom:none; padding-bottom:0; }
+    .contacts-row { gap:28px; }
+    footer { padding:1.8rem 28px; flex-direction:column; gap:0.5rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="images/logo_horizontal.png" alt="Equisé" /></a>
+  <ul class="nav-links">
+    <li><a href="index.html#propuesta">Propuesta</a></li>
+    <li class="nav-dropdown" id="nav-dropdown">
+      <button class="nav-dropdown-toggle" id="services-toggle">Servicios <span class="dropdown-arrow">▾</span></button>
+      <ul class="dropdown-menu">
+        <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
+        <li><a href="gestion-personas.html">Gestión de Personas</a></li>
+        <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
+        <li><a href="procesos-automatizacion.html">Procesos y Automatización</a></li>
+        <li><a href="formacion-capacitacion.html"class='active'>Formación y Capacitación</a></li>
+        <li><a href="gestion-desempeno.html">Gestión de Desempeño</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#nosotros">Nosotros</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Conversemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-links">
+    <li><a href="index.html#propuesta" class="mobile-link">Propuesta</a></li>
+    <li class="mobile-accordion-item" id="mobile-accordion">
+      <button class="mobile-accordion-toggle">Servicios <span class="mobile-arrow">▾</span></button>
+      <ul class="mobile-accordion-body">
+        <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
+        <li><a href="gestion-personas.html">Gestión de Personas</a></li>
+        <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
+        <li><a href="procesos-automatizacion.html">Procesos y Automatización</a></li>
+        <li><a href="formacion-capacitacion.html">Formación y Capacitación</a></li>
+        <li><a href="gestion-desempeno.html">Gestión de Desempeño</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#nosotros" class="mobile-link">Nosotros</a></li>
+    <li class="mobile-cta-wrap"><a href="index.html#contacto" class="mobile-link mobile-cta">Conversemos</a></li>
+  </ul>
+</div>
+
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Servicio · Formación y Capacitación</div>
+    <h1 class="hero-title">La capacitación que transforma<br>es la que parte de tu<br><em>realidad.</em></h1>
+    <p class="hero-body">No existe un programa de liderazgo universal. Existe el que parte del contexto real de tu equipo, trabaja las competencias que efectivamente se necesitan y <strong>se aplica en el día a día.</strong></p>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-item"><span class="stat-num">70-20-10</span><span class="stat-label">el aprendizaje real: 70% en práctica, 20% con otros, 10% en formación formal</span></div>
+  <div class="stat-item"><span class="stat-num">6–12 meses</span><span class="stat-label">el tiempo necesario para consolidar una nueva competencia en el día a día</span></div>
+  <div class="stat-item"><span class="stat-num">+20 años</span><span class="stat-label">formando líderes y profesionales de RRHH en distintos sectores y contextos</span></div>
+</div>
+
+<section class="section alt">
+  <div class="section-header">
+    <div class="sec-label">Lo que ofrecemos</div>
+    <h2 class="sec-title">Programas diseñados<br>para quien los recibe.</h2>
+    <p class="sec-intro">Trabajamos con dos públicos distintos con necesidades distintas — siempre desde el diagnóstico y siempre con metodología activa.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-num">01</div>
+      <h3 class="product-title">Programas de Desarrollo para Líderes</h3>
+      <div class="product-subtitle">Para quienes tienen a cargo equipos y decisiones</div>
+      <div class="product-divider"></div>
+      <p class="product-body">Líderes que gestionan bien las tareas no siempre gestionan bien las personas. Diseñamos programas para que los líderes desarrollen las competencias que necesitan en su contexto real — no en un aula genérica.</p>
+      <ul class="feature-list">
+        <li>Diagnóstico de necesidades de desarrollo del grupo de líderes</li>
+        <li>Diseño del programa: módulos, secuencia, metodología y duración</li>
+        <li>Liderazgo situacional y gestión de equipos diversos</li>
+        <li>Feedback y conversaciones de desempeño efectivas</li>
+        <li>Delegación, seguimiento y accountability</li>
+        <li>Comunicación y gestión de conflictos</li>
+        <li>Práctica real entre módulos con seguimiento individual</li>
+      </ul>
+      <div class="product-badge"><div class="badge-dot"></div>Formato: programa de 3 a 6 meses con encuentros quincenales</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">02</div>
+      <h3 class="product-title">Capacitaciones para Equipos de RRHH</h3>
+      <div class="product-subtitle">Para profesionales que quieren mejorar su práctica</div>
+      <div class="product-divider"></div>
+      <p class="product-body">Equipos de RRHH que quieren profesionalizar su trabajo: mejorar cómo entrevistan, cómo diseñan procesos, cómo miden su impacto y cómo se posicionan como socios estratégicos del negocio.</p>
+      <ul class="feature-list">
+        <li>Entrevistas por competencias: técnica, práctica y calibración</li>
+        <li>Diseño de procesos de RRHH: selección, ingreso, desempeño</li>
+        <li>Indicadores de RRHH: qué medir, cómo y para qué</li>
+        <li>RRHH como socio estratégico: posicionamiento y conversaciones de negocio</li>
+        <li>Gestión de situaciones sensibles: desvinculaciones, conflictos, feedback difícil</li>
+        <li>Casos prácticos extraídos de la realidad del equipo</li>
+      </ul>
+      <div class="product-badge"><div class="badge-dot"></div>Formato: taller de un día o programa de varios módulos</div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark">
+  <div class="section-header">
+    <div class="sec-label light">Cómo trabajamos</div>
+    <h2 class="sec-title light">Del diagnóstico a la transferencia.</h2>
+    <p class="sec-intro light">No arrancamos con el contenido. Arrancamos entendiendo qué necesita el grupo — y de ahí diseñamos lo que realmente tiene sentido enseñar.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Diagnóstico de Necesidades</div><div class="step-body">Entendemos qué competencias necesita fortalecer el grupo, cuál es su nivel actual y qué contexto tiene que enfrentar en su trabajo real.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Diseño del Programa</div><div class="step-body">Diseñamos el programa a medida: contenidos, metodología, secuencia y formato. Priorizamos práctica sobre teoría en una proporción de al menos 60/40.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Implementación</div><div class="step-body">Facilitamos cada encuentro con metodología activa y casos extraídos de la realidad del grupo. El aprendizaje ocurre haciendo, no escuchando.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Transferencia</div><div class="step-body">Diseñamos prácticas entre módulos para que lo aprendido se aplique. Hacemos seguimiento del impacto real en el trabajo cotidiano.</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="sec-label">Por qué Equisé</div>
+    <h2 class="sec-title">Lo que nos diferencia.</h2>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Parte del diagnóstico real</div><div class="diff-body">No tenemos un programa estándar que ofrecemos a todos. Cada programa parte de entender qué necesita el grupo específico que va a participar.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Metodología activa y experiencial</div><div class="diff-body">Más práctica que teoría. Trabajamos con casos reales, role-playing, análisis de situaciones del propio contexto y reflexión grupal.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Foco en la aplicación</div><div class="diff-body">Diseñamos prácticas entre módulos y hacemos seguimiento para que lo aprendido se traslade al trabajo real — no se quede en el cuaderno.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia directa en liderazgo</div><div class="diff-body">Hemos liderado equipos durante más de 20 años. Enseñamos desde la experiencia propia, no desde manuales de gestión.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Formadores y practicantes</div><div class="diff-body">No somos solo formadores. Seguimos trabajando en procesos de RRHH reales — lo que enseñamos está vigente y anclado en la práctica actual.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Integración con el contexto</div><div class="diff-body">Articulamos el programa con el momento de la organización: cambios de estructura, procesos de desempeño, nuevas políticas de RRHH.</div></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-label">Empezamos con una conversación</div>
+  <h2 class="cta-title">¿Qué competencias necesita<br>desarrollar tu equipo hoy?</h2>
+  <p class="cta-sub">30 minutos para entender el punto de partida y diseñar algo que realmente funcione.</p>
+  <div class="contacts-row">
+    <div class="contact-block"><div class="contact-name">Ximena Pecile</div><a class="contact-detail" href="tel:+541144187806">+54 11 4418 7806</a></div>
+    <div class="contact-block"><div class="contact-name">Eduardo Asilian</div><a class="contact-detail" href="tel:+541130202555">+54 11 3020 2555</a></div>
+    <div class="contact-block"><div class="contact-name">Email</div><a class="contact-detail" href="mailto:info@equise.com.ar">info@equise.com.ar</a></div>
+    <div class="contact-block"><div class="contact-name">Web</div><a class="contact-detail" href="https://www.equise.com.ar" target="_blank">www.equise.com.ar</a></div>
+  </div>
+</section>
+
+
+<footer>
+  <p class="footer-logo"><img src="images/logo_horizontal.png" alt="Equisé" /></p>
+  <p class="footer-copy">www.equise.com.ar · Buenos Aires, Argentina</p>
+</footer>
+
+
+<script>
+  const dd=document.getElementById('nav-dropdown');
+  document.getElementById('services-toggle').addEventListener('click',(e)=>{e.stopPropagation();dd.classList.toggle('open');});
+  document.addEventListener('click',()=>dd.classList.remove('open'));
+  dd.addEventListener('click',(e)=>e.stopPropagation());
+  const hb=document.getElementById('nav-hamburger'),mm=document.getElementById('mobile-menu');
+  hb.addEventListener('click',()=>{const o=mm.classList.toggle('open');hb.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
+  mm.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{mm.classList.remove('open');hb.classList.remove('open');document.body.style.overflow='';}));
+  const ac=document.getElementById('mobile-accordion');
+  ac.querySelector('.mobile-accordion-toggle').addEventListener('click',()=>ac.classList.toggle('open'));
+</script>
+
+</body>
+</html>

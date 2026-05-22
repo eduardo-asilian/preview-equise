@@ -27,18 +27,103 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
-    /* NAV */
+    /* ── NAV ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; background: transparent; transition: background 0.4s, padding 0.4s; }
     nav.scrolled { background: rgba(28,45,69,0.96); backdrop-filter: blur(8px); padding: 1rem 4rem; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 2rem; width: auto; display: block; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cream); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links > li > a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+    .nav-links > li > a:hover { color: var(--cream); }
     .nav-cta { color: var(--cream) !important; border: 1px solid rgba(244,237,224,0.4); padding: 0.5rem 1.2rem; border-radius: 2px; }
     .nav-cta:hover { background: rgba(244,237,224,0.1) !important; }
 
-    /* HERO */
+    /* ── DROPDOWN ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle {
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-gray);
+      display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+    }
+    .nav-dropdown-toggle:hover { color: var(--cream); }
+    .dropdown-arrow { display: inline-block; font-size: 0.6rem; transition: transform 0.25s; line-height: 1; }
+    .nav-dropdown.open .dropdown-arrow { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute; top: calc(100% + 1.4rem); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(20,34,54,0.98); backdrop-filter: blur(12px);
+      border-top: 2px solid var(--terra); border-radius: 0 0 4px 4px;
+      min-width: 240px; list-style: none;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.22s, visibility 0.22s, transform 0.22s;
+      z-index: 200; box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+    .nav-dropdown.open .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu li a {
+      display: block; padding: 0.85rem 1.4rem;
+      font-size: 0.78rem; letter-spacing: 0.05em; text-transform: none;
+      color: var(--warm-gray); text-decoration: none;
+      border-bottom: 1px solid rgba(244,237,224,0.07);
+      transition: color 0.18s, background 0.18s, padding-left 0.18s;
+    }
+    .dropdown-menu li:last-child a { border-bottom: none; }
+    .dropdown-menu li a:hover { color: var(--cream); background: rgba(244,237,224,0.06); padding-left: 1.7rem; }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--warm-gray);
+      border-radius: 1px; transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      position: fixed; inset: 0; background: rgba(20,34,54,0.99);
+      z-index: 99; padding: 6rem 2.5rem 2rem; overflow-y: auto;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+    }
+    .mobile-menu.open { opacity: 1; visibility: visible; }
+    .mobile-links { list-style: none; }
+    .mobile-links > li { border-bottom: 1px solid rgba(244,237,224,0.1); }
+    .mobile-link {
+      display: block; padding: 1.2rem 0;
+      font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--warm-gray); text-decoration: none; transition: color 0.2s;
+    }
+    .mobile-link:hover { color: var(--cream); }
+    .mobile-cta-wrap { padding: 1.5rem 0 0; }
+    .mobile-link.mobile-cta {
+      display: inline-block; color: var(--cream);
+      border: 1px solid rgba(244,237,224,0.35); padding: 0.9rem 1.8rem;
+      border-radius: 2px; letter-spacing: 0.12em; margin-top: 0.5rem;
+    }
+    .mobile-accordion-toggle {
+      width: 100%; background: none; border: none;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--warm-gray);
+      padding: 1.2rem 0; text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; transition: color 0.2s;
+    }
+    .mobile-accordion-toggle:hover { color: var(--cream); }
+    .mobile-arrow { font-size: 0.6rem; transition: transform 0.25s; }
+    .mobile-accordion-item.open .mobile-arrow { transform: rotate(180deg); }
+    .mobile-accordion-body { list-style: none; max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .mobile-accordion-item.open .mobile-accordion-body { max-height: 500px; }
+    .mobile-accordion-body li a {
+      display: block; padding: 0.8rem 0 0.8rem 1rem;
+      font-size: 0.88rem; color: rgba(200,188,172,0.65); text-decoration: none;
+      border-bottom: 1px solid rgba(244,237,224,0.05); transition: color 0.2s;
+    }
+    .mobile-accordion-body li a:hover { color: var(--cream); }
+
+    /* ── HERO ── */
     .hero { min-height: 100vh; background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 10rem 5rem 6rem 4rem; position: relative; z-index: 2; }
     .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra-lt); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
@@ -56,7 +141,7 @@
     .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 4px; opacity: 0.6; filter: sepia(20%) contrast(1.05); animation: zoomIn 1.2s 0.2s forwards; transform: scale(1.06); }
     .hero-tagline { position: absolute; bottom: 3.5rem; right: 4rem; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--warm-gray); letter-spacing: 0.04em; z-index: 2; opacity: 0; animation: fadeUp 0.8s 1s forwards; line-height: 1.5; text-align: right; }
 
-    /* SHARED */
+    /* ── SHARED ── */
     .rule { width: 2.5rem; height: 2px; background: var(--terra); margin-bottom: 1.5rem; }
     section { padding: 7rem 4rem; }
     .section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; display: block; }
@@ -64,7 +149,7 @@
     .section-title em { font-style: italic; color: var(--terra); }
     .section-lead { font-size: 1.05rem; line-height: 1.75; color: var(--text-mid); max-width: 55ch; font-weight: 300; }
 
-    /* PROPUESTA */
+    /* ── PROPUESTA ── */
     .propuesta { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .propuesta-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .pillar { padding: 1.8rem; background: var(--white); border-left: 3px solid var(--terra); transition: transform 0.25s, box-shadow 0.25s; }
@@ -72,7 +157,7 @@
     .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; }
     .pillar-text { font-size: 0.88rem; line-height: 1.65; color: var(--text-mid); font-weight: 300; }
 
-    /* PROCESO */
+    /* ── PROCESO ── */
     .proceso { background: var(--navy); text-align: center; }
     .proceso .section-label { color: var(--warm-gray); }
     .proceso .section-title { color: var(--cream); }
@@ -84,18 +169,21 @@
     .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--cream); margin-bottom: 0.7rem; }
     .step-desc { font-size: 0.82rem; line-height: 1.6; color: var(--warm-gray); font-weight: 300; }
 
-    /* SERVICIOS */
+    /* ── SERVICIOS ── */
     .servicios { background: var(--white); }
     .servicios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
-    .servicio-card { padding: 2.5rem 2rem; background: var(--linen); border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.25s; }
-    .servicio-card:hover { transform: translateY(-5px); }
+    a.servicio-card { text-decoration: none; color: inherit; display: block; }
+    .servicio-card { padding: 2.5rem 2rem; background: var(--linen); border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+    .servicio-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(28,45,69,0.1); }
     .servicio-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--terra); transform: scaleX(0); transition: transform 0.3s; }
     .servicio-card:hover::after { transform: scaleX(1); }
     .servicio-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; color: var(--terra); }
     .servicio-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
     .servicio-desc { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+    .servicio-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); font-weight: 500; transition: gap 0.25s; }
+    .servicio-card:hover .servicio-link { gap: 0.85rem; }
 
-    /* IMPACTO */
+    /* ── IMPACTO ── */
     .impacto { background: var(--terra); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .impacto .section-label { color: rgba(244,237,224,0.6); }
     .impacto .section-title { color: var(--cream); }
@@ -106,7 +194,7 @@
     .impacto-list li:last-child { border-bottom: none; }
     .check { width: 1.4rem; height: 1.4rem; border: 1.5px solid rgba(244,237,224,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; margin-top: 0.1rem; }
 
-    /* FOUNDERS */
+    /* ── FOUNDERS ── */
     .founders { background: var(--cream); }
     .founders-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: center; }
     .founders-photo-wrap { position: relative; }
@@ -116,7 +204,7 @@
     .founders-bio { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1.5rem; }
     .founders-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; line-height: 1.4; color: var(--navy); border-left: 3px solid var(--terra); padding-left: 1.5rem; }
 
-    /* CONTACTO */
+    /* ── CONTACTO ── */
     .contacto { background: var(--navy); display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
     .hs-card { background: var(--cream); border-radius: 12px; padding: 2.5rem; }
     .contacto .section-label { color: var(--warm-gray); }
@@ -127,25 +215,13 @@
     .clink { display: flex; align-items: center; gap: 1rem; color: var(--warm-gray); text-decoration: none; font-size: 0.9rem; transition: color 0.2s, gap 0.2s; }
     .clink:hover { color: var(--cream); gap: 1.4rem; }
     .clink-ico { width: 2rem; height: 2rem; background: rgba(244,237,224,0.07); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; border: 1px solid rgba(244,237,224,0.12); }
-    .cform { display: flex; flex-direction: column; gap: 1.2rem; }
-    .fg { display: flex; flex-direction: column; gap: 0.4rem; }
-    .fg label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,237,224,0.38); }
-    .fg input, .fg textarea, .fg select { background: rgba(244,237,224,0.06); border: 1px solid rgba(244,237,224,0.14); color: var(--cream); padding: 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; width: 100%; transition: border-color 0.2s; border-radius: 1px; -webkit-appearance: none; }
-    .fg input::placeholder, .fg textarea::placeholder { color: rgba(244,237,224,0.25); }
-    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--terra-lt); }
-    .fg textarea { resize: vertical; min-height: 7rem; }
-    .fg select option { background: var(--navy); color: var(--cream); }
-    .btn-submit { background: var(--terra); color: var(--cream); padding: 1rem; border: none; cursor: pointer; width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; border-radius: 1px; margin-top: 0.3rem; }
-    .btn-submit:hover { background: var(--terra-lt); }
-    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .form-success { display: none; background: rgba(122,62,50,0.25); border: 1px solid rgba(158,84,68,0.5); color: var(--cream); padding: 1.4rem 1.6rem; font-size: 0.92rem; line-height: 1.65; border-radius: 1px; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer { background: #111b28; padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
     .footer-logo img { height: 1.6rem; width: auto; display: block; opacity: 0.7; }
     .footer-copy { font-size: 0.75rem; color: rgba(200,188,172,0.4); letter-spacing: 0.05em; }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes zoomIn { from { transform: scale(1.06); } to { transform: scale(1); } }
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -155,11 +231,12 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 2rem; }
       nav.scrolled { padding: 0.9rem 2rem; }
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       section { padding: 5rem 2rem; }
       .hero { grid-template-columns: 1fr; }
       .hero-right { display: block; height: 280px; padding: 0; }
@@ -185,21 +262,53 @@
     </a>
     <ul class="nav-links">
       <li><a href="#propuesta">Propuesta</a></li>
-      <li><a href="#servicios">Servicios</a></li>
+      <li class="nav-dropdown" id="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="services-toggle">
+          Servicios <span class="dropdown-arrow">▾</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
+          <li><a href="gestion-personas.html">Gestión de Personas</a></li>
+          <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
+          <li><a href="procesos-automatizacion.html">Procesos y Automatización</a></li>
+          <li><a href="formacion-capacitacion.html">Formación y Capacitación</a></li>
+          <li><a href="gestion-desempeno.html">Gestión de Desempeño</a></li>
+        </ul>
+      </li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#contacto" class="nav-cta">Conversemos</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="#propuesta" class="mobile-link">Propuesta</a></li>
+      <li class="mobile-accordion-item" id="mobile-accordion">
+        <button class="mobile-accordion-toggle">Servicios <span class="mobile-arrow">▾</span></button>
+        <ul class="mobile-accordion-body">
+          <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
+          <li><a href="gestion-personas.html">Gestión de Personas</a></li>
+          <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
+          <li><a href="procesos-automatizacion.html">Procesos y Automatización</a></li>
+          <li><a href="formacion-capacitacion.html">Formación y Capacitación</a></li>
+          <li><a href="gestion-desempeno.html">Gestión de Desempeño</a></li>
+        </ul>
+      </li>
+      <li><a href="#nosotros" class="mobile-link">Nosotros</a></li>
+      <li class="mobile-cta-wrap"><a href="#contacto" class="mobile-link mobile-cta">Conversemos</a></li>
+    </ul>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <p class="hero-eyebrow">Consultoría de RRHH & Estrategia Organizacional</p>
       <h1 class="hero-title">Personas que<br><em>transforman</em><br>organizaciones.</h1>
-      <p class="hero-sub"> Transformamos visión en procesos con estructura, adaptados a cada 
-cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordenar, decidir y avanzar. Trabajamos sobre los procesos, los vínculos y las personas para que las decisiones se traduzcan en resultados reales y sostenibles.</p>
-         
-<div class="hero-actions">
+      <p class="hero-sub">Transformamos visión en procesos con estructura, adaptados a cada cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordenar, decidir y avanzar.</p>
+      <div class="hero-actions">
         <a href="#contacto" class="btn-primary">Conversemos</a>
         <a href="#propuesta" class="btn-ghost">Cómo trabajamos</a>
       </div>
@@ -274,36 +383,49 @@ cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordena
     <h2 class="section-title reveal">Un enfoque integral:<br><em>personas, cultura, estructura.</em></h2>
     <p class="section-lead reveal">Donde hay personas trabajando, acompañamos y actuamos. Una red de talentos y profesionales se activa según la necesidad de cada cliente.</p>
     <div class="servicios-grid">
-      <div class="servicio-card reveal reveal-delay-1">
+
+      <a class="servicio-card reveal reveal-delay-1" href="reclutamiento.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Reclutamiento y Selección</p>
-        <p class="servicio-desc">El inicio real de toda organización. No se trata solo de cubrir posiciones, sino de elegir personas que puedan sostener el crecimiento, la cultura y los resultados del negocio. Acompañamos el proceso completo para que la decisión sea clara y sostenible.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-2">
+        <p class="servicio-desc">El inicio real de toda organización. No se trata solo de cubrir posiciones, sino de elegir personas que puedan sostener el crecimiento, la cultura y los resultados del negocio.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
+      <a class="servicio-card reveal reveal-delay-2" href="gestion-personas.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Gestión de Personas</p>
-        <p class="servicio-desc">Crecer implica ordenar lo que antes alcanzaba. Acompañamos organizaciones en expansión, empresas que buscan profesionalizar su área de personas y equipos de RRHH que quieren estructurar y potenciar su impacto.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-3">
+        <p class="servicio-desc">Crecer implica ordenar lo que antes alcanzaba. Acompañamos organizaciones en expansión y equipos de RRHH que quieren estructurar y potenciar su impacto.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
+      <a class="servicio-card reveal reveal-delay-3" href="eventos-cultura.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Eventos y Cultura</p>
-        <p class="servicio-desc">Los equipos no se ordenan solos. Diseñamos workshops experienciales, espacios de bienestar y eventos de inicio o cierre de ciclo. Combinamos metodologías lúdicas, artísticas y creativas para habilitar claridad, alineación y decisiones.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-1">
+        <p class="servicio-desc">Diseñamos workshops experienciales, espacios de bienestar y eventos de inicio o cierre de ciclo que habilitan claridad, alineación y decisiones.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
+      <a class="servicio-card reveal reveal-delay-1" href="procesos-automatizacion.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Procesos y Automatización</p>
-        <p class="servicio-desc">Decisiones ágiles basadas en datos. Implementamos sistemas ATS, analizamos cómo estás gestionando hoy y diseñamos indicadores y herramientas adaptadas a tu realidad para sostenerlos con el equipo.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-2">
+        <p class="servicio-desc">Decisiones ágiles basadas en datos. Implementamos sistemas ATS, diseñamos indicadores y herramientas adaptadas a la realidad de tu organización.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
+      <a class="servicio-card reveal reveal-delay-2" href="formacion-capacitacion.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Formación y Capacitación</p>
-        <p class="servicio-desc">A medida de cada equipo y momento. Armamos capacitaciones para líderes y equipos de RRHH, trabajando las competencias que cada organización necesita fortalecer en su etapa particular.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-3">
+        <p class="servicio-desc">A medida de cada equipo y momento. Capacitaciones para líderes y equipos de RRHH, trabajando las competencias que cada organización necesita fortalecer.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
+      <a class="servicio-card reveal reveal-delay-3" href="gestion-desempeno.html">
         <span class="servicio-icon">◈</span>
         <p class="servicio-title">Gestión de Desempeño</p>
-        <p class="servicio-desc">Resultados medibles y feedback real. Diseñamos sistemas de evaluación y desarrollo que alinean expectativas, construyen cultura de feedback sostenible y generan impacto directo en los resultados.</p>
-      </div>
+        <p class="servicio-desc">Resultados medibles y feedback real. Diseñamos sistemas de evaluación que alinean expectativas y construyen cultura de feedback sostenible.</p>
+        <span class="servicio-link">Ver más →</span>
+      </a>
+
     </div>
   </section>
 
@@ -335,7 +457,7 @@ cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordena
         <p class="founders-names">Eduardo Asilian · Ximena Pecile</p>
         <div class="rule"></div>
         <p class="founders-bio">Colegas de trabajo, amigos y socios, con más de 20 años de experiencia liderando equipos y áreas de RRHH en organizaciones de distintos tamaños y sectores.</p>
-        <p class="founders-bio">Fundamos Equisé con la convicción de que los resultados que obtenemos dependen en gran medida de las personas y su capacidad para cooperar. Cuando se trabaja con integridad, claridad de criterio, empatía y armonía, tanto individuos como organizaciones son capaces de mostrar la mejor versión de sí mismos, y ese precisamente es el propósito que nos guía.</p>
+        <p class="founders-bio">Fundamos Equisé con la convicción de que los resultados que obtenemos dependen en gran medida de las personas y su capacidad para cooperar. Cuando se trabaja con integridad, claridad de criterio, empatía y armonía, tanto individuos como organizaciones son capaces de mostrar la mejor versión de sí mismos.</p>
         <blockquote class="founders-quote">"Cada organización tiene su mejor versión.<br>Nosotros te acompañamos a encontrarla."</blockquote>
       </div>
     </div>
@@ -366,28 +488,55 @@ cultura y momento del negocio. Acompañamos a organizaciones y líderes a ordena
     <p class="footer-copy">www.equise.com.ar · Buenos Aires, Argentina</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // NAV
+  <script>
+    // NAV SCROLL
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // DROPDOWN (click-to-open)
+    const dropdown = document.getElementById('nav-dropdown');
+    const servicesToggle = document.getElementById('services-toggle');
+    if (servicesToggle && dropdown) {
+      servicesToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', () => dropdown.classList.remove('open'));
+      dropdown.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // HAMBURGER / MOBILE MENU
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // MOBILE ACCORDION
+    const accordionItem = document.getElementById('mobile-accordion');
+    if (accordionItem) {
+      accordionItem.querySelector('.mobile-accordion-toggle')
+        .addEventListener('click', () => accordionItem.classList.toggle('open'));
+    }
 
     // REVEAL ON SCROLL
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-
   </script>
-  
-  <!-- Start of HubSpot Embed Code --> 
-  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51373412.js">
-  </script>
-  <!-- End of HubSpot Embed Code -->
-  
+
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51373412.js"></script>
 </body>
 </html>
