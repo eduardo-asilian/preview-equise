@@ -55,9 +55,9 @@
   .hero::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--terra); }
   .hero::after { content: ''; position: absolute; right: -100px; top: -100px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(117,68,55,0.1) 0%, transparent 70%); pointer-events: none; }
   .hero-inner { max-width: 800px; position: relative; z-index: 1; }
-  .hero-label { font-size: 10px; color: var(--terra); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 20px; }
+  .hero-label { font-size: 10px; color: rgba(229,226,215,0.65); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 20px; }
   .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(38px,6vw,62px); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 22px; }
-  .hero-title em { color: var(--terra); font-style: italic; }
+  .hero-title em { color: var(--cream); font-style: italic; }
   .hero-body { font-size: 17px; color: var(--cream-dk); line-height: 1.75; max-width: 620px; margin-bottom: 36px; font-weight: 300; }
   .hero-body strong { color: var(--cream); font-weight: 500; }
   .stat-strip { background: var(--terra); padding: 28px 60px; display: flex; align-items: center; }
@@ -90,7 +90,7 @@
   .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
   .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
   .step { background: rgba(255,255,255,0.05); border: 1px solid rgba(229,226,215,0.1); padding: 32px 24px; border-radius: 2px; }
-  .step-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--terra); line-height: 1; margin-bottom: 14px; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--cream-dk); line-height: 1; margin-bottom: 14px; }
   .step-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
   .step-body { font-size: 13.5px; color: var(--cream-dk); line-height: 1.65; }
   .diff-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
@@ -100,7 +100,7 @@
   .diff-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
   .diff-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
   .cta-section { background: var(--navy-dk); padding: 80px 60px; text-align: center; }
-  .cta-label { font-size: 10px; color: var(--terra); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
+  .cta-label { font-size: 10px; color: rgba(229,226,215,0.65); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
   .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(26px,4vw,38px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
   .cta-sub { font-size: 15px; color: var(--cream-dk); margin-bottom: 40px; }
   .contacts-row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
@@ -124,6 +124,8 @@
     .contacts-row { gap: 28px; }
     footer { padding: 1.8rem 28px; flex-direction: column; gap: 0.5rem; text-align: center; }
   }
+  .cta-btn { display:inline-block; background:var(--terra); color:var(--white); padding:0.9rem 2.5rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:background 0.2s; margin-top:0.5rem; }
+  .cta-btn:hover { background:var(--terra-lt); }
 </style>
 </head>
 <body>
@@ -228,7 +230,7 @@
   <div class="section-header">
     <div class="sec-label light">Cómo trabajamos</div>
     <h2 class="sec-title light">Un proceso claro para ordenar lo que creció.</h2>
-    <p class="sec-intro light">No imponemos modelos. Partimos del contexto real de cada organización para diseñar lo que efectivamente puede funcionar ahí.</p>
+    <p class="sec-intro light">Cada solución parte del diagnóstico real de la organización — de lo que efectivamente puede funcionar en ese contexto y momento específico.</p>
   </div>
   <div class="steps-grid">
     <div class="step"><div class="step-num">01</div><div class="step-title">Diagnóstico Real</div><div class="step-body">Entendemos cómo funciona hoy el área de personas: qué existe, qué falta, qué genera fricción y qué momento atraviesa el negocio.</div></div>
@@ -244,9 +246,9 @@
     <h2 class="sec-title">Lo que nos diferencia.</h2>
   </div>
   <div class="diff-grid">
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia directa en RRHH</div><div class="diff-body">No somos consultores de proceso. Lideramos áreas de personas durante más de 20 años. Diseñamos lo que sabemos que funciona en la práctica.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia directa en RRHH</div><div class="diff-body">Lideramos áreas de personas durante más de 20 años antes de hacer consultoría. Diseñamos desde la experiencia directa, no desde modelos académicos.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Lectura de cultura y contexto</div><div class="diff-body">Cada organización tiene su historia y su momento. No aplicamos plantillas — construimos soluciones que encajan con la realidad concreta de cada cliente.</div></div>
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Foco en la implementación</div><div class="diff-body">No entregamos documentos. Acompañamos hasta que los procesos funcionan, el equipo los adoptó y la organización puede sostenerlos sola.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Foco en la implementación</div><div class="diff-body">Acompañamos hasta que los procesos funcionan, el equipo los adoptó y la organización puede sostenerlos sola. Eso no termina con la entrega de un documento.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Adaptado al tamaño real</div><div class="diff-body">Diseñamos estructuras para PyMEs y organizaciones en crecimiento, no para grandes corporaciones. La escala importa.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Mirada integral de personas</div><div class="diff-body">Integramos selección, cultura, desempeño y desarrollo. La gestión de personas es un sistema — lo tratamos como tal.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Trabajo directo con los fundadores</div><div class="diff-body">Desde la primera reunión hasta la última, trabajás con Eduardo y Ximena. La experiencia y el criterio están presentes en cada paso.</div></div>
@@ -257,12 +259,8 @@
   <div class="cta-label">Empezamos con una conversación</div>
   <h2 class="cta-title">¿Tu área de personas está<br>a la altura de donde va tu organización?</h2>
   <p class="cta-sub">30 minutos para entender tu realidad y ver cómo podemos acompañarte.</p>
-  <div class="contacts-row">
-    <div class="contact-block"><div class="contact-name">Ximena Pecile</div><a class="contact-detail" href="tel:+541144187806">+54 11 4418 7806</a></div>
-    <div class="contact-block"><div class="contact-name">Eduardo Asilian</div><a class="contact-detail" href="tel:+541130202555">+54 11 3020 2555</a></div>
-    <div class="contact-block"><div class="contact-name">Email</div><a class="contact-detail" href="mailto:info@equise.com.ar">info@equise.com.ar</a></div>
-    <div class="contact-block"><div class="contact-name">Web</div><a class="contact-detail" href="https://www.equise.com.ar" target="_blank">www.equise.com.ar</a></div>
-  </div>
+  
+  <a href="index.html#contacto" class="cta-btn">Conversemos →</a>
 </section>
 
 <footer>

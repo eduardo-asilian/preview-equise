@@ -55,9 +55,9 @@
   .hero::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--terra); }
   .hero::after { content:''; position:absolute; right:-100px; top:-100px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(117,68,55,0.1) 0%,transparent 70%); pointer-events:none; }
   .hero-inner { max-width:800px; position:relative; z-index:1; }
-  .hero-label { font-size:10px; color:var(--terra); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:20px; }
+  .hero-label { font-size:10px; color:rgba(229,226,215,0.65); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:20px; }
   .hero-title { font-family:'Playfair Display',serif; font-size:clamp(38px,6vw,62px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:22px; }
-  .hero-title em { color:var(--terra); font-style:italic; }
+  .hero-title em { color:var(--cream); font-style:italic; }
   .hero-body { font-size:17px; color:var(--cream-dk); line-height:1.75; max-width:620px; margin-bottom:36px; font-weight:300; }
   .hero-body strong { color:var(--cream); font-weight:500; }
   .stat-strip { background:var(--terra); padding:28px 60px; display:flex; align-items:center; }
@@ -90,7 +90,7 @@
   .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--terra); flex-shrink:0; }
   .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
   .step { background:rgba(255,255,255,0.05); border:1px solid rgba(229,226,215,0.1); padding:32px 24px; border-radius:2px; }
-  .step-num { font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--terra); line-height:1; margin-bottom:14px; }
+  .step-num { font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--cream-dk); line-height:1; margin-bottom:14px; }
   .step-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:10px; }
   .step-body { font-size:13.5px; color:var(--cream-dk); line-height:1.65; }
   .diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
@@ -100,7 +100,7 @@
   .diff-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--navy); margin-bottom:10px; }
   .diff-body { font-size:13.5px; color:var(--muted); line-height:1.65; }
   .cta-section { background:var(--navy-dk); padding:80px 60px; text-align:center; }
-  .cta-label { font-size:10px; color:var(--terra); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:16px; }
+  .cta-label { font-size:10px; color:rgba(229,226,215,0.65); letter-spacing:4px; text-transform:uppercase; font-weight:500; margin-bottom:16px; }
   .cta-title { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--white); line-height:1.2; margin-bottom:14px; }
   .cta-sub { font-size:15px; color:var(--cream-dk); margin-bottom:40px; }
   .contacts-row { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
@@ -122,6 +122,8 @@
     .contacts-row { gap:28px; }
     footer { padding:1.8rem 28px; flex-direction:column; gap:0.5rem; text-align:center; }
   }
+  .cta-btn { display:inline-block; background:var(--terra); color:var(--white); padding:0.9rem 2.5rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:background 0.2s; margin-top:0.5rem; }
+  .cta-btn:hover { background:var(--terra-lt); }
 </style>
 </head>
 <body>
@@ -170,7 +172,7 @@
   <div class="hero-inner">
     <div class="hero-label">Servicio · Eventos y Cultura</div>
     <h1 class="hero-title">El encuentro es la herramienta<br>más subestimada<br>del <em>liderazgo.</em></h1>
-    <p class="hero-body">Los equipos no se alinean solos. Se alinean cuando hay espacios bien diseñados para encontrarse, pensar juntos y decidir. <strong>Eso es lo que diseñamos.</strong></p>
+    <p class="hero-body">Los equipos se alinean cuando hay espacios bien diseñados para encontrarse, pensar juntos y decidir. <strong>Eso es lo que diseñamos.</strong></p>
   </div>
 </section>
 
@@ -207,7 +209,7 @@
       <h3 class="product-title">Eventos de Inicio y Cierre de Ciclo</h3>
       <div class="product-subtitle">Rituales que dan sentido y dirección al año</div>
       <div class="product-divider"></div>
-      <p class="product-body">Arrancar o cerrar un ciclo con el equipo no es solo una cuestión simbólica — es una decisión estratégica. Un encuentro bien diseñado puede transformar el foco, la energía y el compromiso de todo el año.</p>
+      <p class="product-body">Arrancar o cerrar un ciclo con el equipo es una decisión estratégica. Un encuentro bien diseñado puede transformar el foco, la energía y el compromiso de todo el año.</p>
       <ul class="feature-list">
         <li>Diseño del evento: objetivos, agenda, dinámica y flujo</li>
         <li>Momentos de balance, celebración y reconocimiento</li>
@@ -268,12 +270,8 @@
   <div class="cta-label">Empezamos con una conversación</div>
   <h2 class="cta-title">¿Tu equipo necesita<br>un espacio para encontrarse?</h2>
   <p class="cta-sub">30 minutos para entender el momento y diseñar algo que tenga sentido para tu equipo.</p>
-  <div class="contacts-row">
-    <div class="contact-block"><div class="contact-name">Ximena Pecile</div><a class="contact-detail" href="tel:+541144187806">+54 11 4418 7806</a></div>
-    <div class="contact-block"><div class="contact-name">Eduardo Asilian</div><a class="contact-detail" href="tel:+541130202555">+54 11 3020 2555</a></div>
-    <div class="contact-block"><div class="contact-name">Email</div><a class="contact-detail" href="mailto:info@equise.com.ar">info@equise.com.ar</a></div>
-    <div class="contact-block"><div class="contact-name">Web</div><a class="contact-detail" href="https://www.equise.com.ar" target="_blank">www.equise.com.ar</a></div>
-  </div>
+  
+  <a href="index.html#contacto" class="cta-btn">Conversemos →</a>
 </section>
 
 
