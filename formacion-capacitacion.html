@@ -114,7 +114,7 @@
   @media (max-width:900px) {
     nav { padding:0 28px; } .nav-links { display:none; } .nav-hamburger { display:flex; }
     .hero,.section,.cta-section { padding-left:28px; padding-right:28px; }
-    .products-grid,.diff-grid { grid-template-columns:1fr; }
+    .products-grid,.diff-grid,.taller-grid { grid-template-columns:1fr; }
     .steps-grid { grid-template-columns:1fr 1fr; }
     .stat-strip { flex-wrap:wrap; padding:20px 28px; gap:16px; }
     .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; }
@@ -124,6 +124,10 @@
   }
   .cta-btn { display:inline-block; background:var(--terra); color:var(--white); padding:0.9rem 2.5rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:background 0.2s; margin-top:0.5rem; }
   .cta-btn:hover { background:var(--terra-lt); }
+  .taller-grid { display:grid; grid-template-columns:1fr 390px; gap:48px; align-items:start; }
+  .taller-cta-card { background:var(--navy); padding:40px 34px; position:relative; overflow:hidden; }
+  .taller-card-deco { position:absolute; top:-50px; right:-50px; width:200px; height:200px; border:1px solid rgba(229,226,215,0.06); border-radius:50%; pointer-events:none; }
+  .taller-cta-btn { display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; }
 </style>
 </head>
 <body>
@@ -251,6 +255,45 @@
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia directa en liderazgo</div><div class="diff-body">Hemos liderado equipos durante más de 20 años. Enseñamos desde la experiencia propia, no desde manuales de gestión.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Formadores y practicantes</div><div class="diff-body">Seguimos activos en procesos de RRHH reales mientras formamos. Lo que enseñamos está anclado en la práctica actual — no en manuales de gestión de hace diez años.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Integración con el contexto</div><div class="diff-body">Articulamos el programa con el momento de la organización: cambios de estructura, procesos de desempeño, nuevas políticas de RRHH.</div></div>
+  </div>
+</section>
+
+<!-- ═══ TALLER DESTACADO: SALUD MENTAL ═══ -->
+<section class="section alt" id="taller-salud-mental">
+  <div class="section-header" style="max-width:700px;">
+    <div class="sec-label">Taller · Salud Mental en el Trabajo</div>
+    <h2 class="sec-title">Mitos y Realidades de la<br>Salud Mental en el Trabajo</h2>
+    <p class="sec-intro">El ausentismo aparece en el reporte. Lo que viene por debajo — presentismo, talento que se va, líderes que improvisan — no lo registra ningún sistema. Y cuesta más.</p>
+  </div>
+  <div class="taller-grid">
+
+    <!-- PITCH -->
+    <div>
+      <p style="font-size:14.5px;line-height:1.82;color:var(--text);margin-bottom:20px;">Un taller de 2 horas con rigor clínico y pensamiento organizacional. Los equipos aprenden a diferenciar lo que a simple vista se confunde — ansiedad con actitud, depresión con desmotivación, agotamiento con rendimiento —, identifican señales reales y se llevan herramientas para acompañar sin invadir el rol del clínico.</p>
+      <p style="font-size:14.5px;line-height:1.82;color:var(--text);margin-bottom:32px;">No es una charla de bienestar. No es motivacional. Es información con criterio, diseñada para el mundo del trabajo.</p>
+      <ul class="feature-list">
+        <li>Diferenciación aplicada: depresión, ansiedad, distimia, duelo y desmotivación en lenguaje laboral</li>
+        <li>Análisis de casos reales del contexto organizacional</li>
+        <li>Reflexión sobre el impacto de la cultura de hiperproductividad en los equipos</li>
+        <li>Herramientas concretas para reconocer señales y acompañar</li>
+      </ul>
+      <div class="product-badge" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(117,68,55,0.12);">
+        <div class="badge-dot"></div>2 horas &nbsp;·&nbsp; Presencial o virtual &nbsp;·&nbsp; Equipos, líderes y áreas de RRHH
+      </div>
+    </div>
+
+    <!-- CTA CARD -->
+    <div class="taller-cta-card">
+      <div class="taller-card-deco"></div>
+      <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(229,226,215,0.45);font-weight:500;margin-bottom:16px;">Autodiagnóstico gratuito</div>
+      <p style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;color:var(--white);line-height:1.3;margin-bottom:14px;">¿Este taller es<br>para tu organización?</p>
+      <p style="font-size:13px;color:var(--cream-dk);line-height:1.75;margin-bottom:28px;">7 preguntas. 3 minutos. Una devolución personalizada sobre lo que está pasando en tu equipo — y si tiene sentido hacer algo juntos.</p>
+      <a href="autodiagnostico-salud-mental.html" class="cta-btn taller-cta-btn">Hacer el diagnóstico &rarr;</a>
+      <div style="margin-top:22px;padding-top:16px;border-top:1px solid rgba(229,226,215,0.08);">
+        <p style="font-size:10.5px;color:rgba(229,226,215,0.32);line-height:1.6;">Sin compromiso &nbsp;·&nbsp; Sin costo &nbsp;·&nbsp; 3 minutos</p>
+      </div>
+    </div>
+
   </div>
 </section>
 

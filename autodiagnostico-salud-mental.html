@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodiagnóstico · Salud Mental en el Trabajo · Equisé</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:        #243044;
+  --navy-light:  #2c3a52;
+  --cream:       #e8dcc8;
+  --cream-bg:    #f5f1ea;
+  --terra:       #8a4535;
+  --terra-light: #b05a42;
+  --gold:        #c9a96e;
+  --white:       #faf8f4;
+  --text:        #243044;
+  --text-soft:   rgba(36,48,68,0.58);
+}
+
+body {
+  background: var(--cream-bg);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px 72px;
+  color: var(--text);
+}
+
+/* ─── WIDGET SHELL ─── */
+.widget {
+  width: 100%;
+  max-width: 640px;
+  background: var(--white);
+  box-shadow: 0 2px 28px rgba(36,48,68,0.10);
+  overflow: hidden;
+}
+
+/* ─── BRAND BAR ─── */
+.brand-bar {
+  background: var(--navy);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand-name {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.brand-tag {
+  font-size: 9.5px;
+  font-weight: 300;
+  color: rgba(232,220,200,0.45);
+  letter-spacing: 0.3px;
+}
+
+/* ─── SCREENS ─── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ─── PROGRESS ─── */
+.progress-wrap {
+  height: 3px;
+  background: rgba(36,48,68,0.08);
+}
+.progress-fill {
+  height: 100%;
+  background: var(--terra);
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ═══════════════════
+   INTRO
+═══════════════════ */
+.intro-body { padding: 52px 48px 48px; }
+
+.eyebrow {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--terra);
+  flex-shrink: 0;
+}
+
+.intro-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.intro-title em { font-style: italic; }
+
+.intro-desc {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-soft);
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+
+.meta-strip {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+  border: 1px solid rgba(36,48,68,0.10);
+}
+.meta-item {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid rgba(36,48,68,0.10);
+}
+.meta-item:last-child { border-right: none; }
+.meta-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--navy);
+  line-height: 1;
+}
+.meta-lbl {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-soft);
+  letter-spacing: 0.3px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.btn-terra { background: var(--terra); color: #fff; }
+.btn-terra:hover { background: var(--terra-light); }
+.btn svg { width: 15px; height: 15px; }
+
+/* ═══════════════════
+   QUESTION
+═══════════════════ */
+.q-body { padding: 44px 48px 48px; }
+
+.q-counter {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+}
+
+.q-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1.28;
+  color: var(--navy);
+  margin-bottom: 30px;
+  min-height: 80px;
+  transition: opacity 0.22s ease, transform 0.28s ease;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: opacity 0.22s ease;
+}
+
+.opt {
+  padding: 15px 20px;
+  border: 1.5px solid rgba(36,48,68,0.13);
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  position: relative;
+  user-select: none;
+}
+.opt:hover {
+  border-color: var(--terra-light);
+  background: rgba(138,69,53,0.04);
+}
+.opt.selected {
+  border-color: var(--terra);
+  background: rgba(138,69,53,0.06);
+  color: var(--terra);
+}
+.opt.selected::after {
+  content: '✓';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--terra);
+}
+
+/* ═══════════════════
+   RESULT
+═══════════════════ */
+.result-header {
+  padding: 40px 48px 36px;
+  background: var(--navy);
+}
+
+.result-eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.result-eyebrow::before {
+  content: '';
+  width: 18px; height: 1px;
+  flex-shrink: 0;
+}
+
+.result-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.result-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.78;
+  color: rgba(232,220,200,0.68);
+  margin-bottom: 24px;
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.score-track {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.score-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.9s ease;
+}
+.score-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+/* ─── CONTACT SECTION ─── */
+.contact-section { padding: 36px 48px 48px; }
+
+.contact-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.contact-sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--text-soft);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.form-row.solo { grid-template-columns: 1fr; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-lbl {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.form-input {
+  padding: 11px 14px;
+  border: 1.5px solid rgba(36,48,68,0.14);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text);
+  background: transparent;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus { border-color: var(--navy); }
+.form-input::placeholder { color: rgba(36,48,68,0.28); }
+
+.form-footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.disclaimer {
+  font-size: 10.5px;
+  font-weight: 300;
+  color: rgba(36,48,68,0.38);
+  line-height: 1.55;
+  max-width: 260px;
+}
+
+/* ═══════════════════
+   THANK YOU
+═══════════════════ */
+.ty-body {
+  padding: 70px 48px 64px;
+  text-align: center;
+}
+.ty-icon {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(138,69,53,0.08);
+  border: 1.5px solid rgba(138,69,53,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 20px;
+  color: var(--terra);
+}
+.ty-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.ty-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-soft);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+.ty-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(36,48,68,0.32);
+}
+
+/* ─── BACK LINK ─── */
+.back-bar {
+  background: var(--cream-bg);
+  border-bottom: 1px solid rgba(36,48,68,0.08);
+  padding: 12px 40px;
+}
+.back-link {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-soft);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--terra); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 520px) {
+  .intro-body, .q-body, .contact-section, .ty-body, .brand-bar, .back-bar { padding-left: 24px; padding-right: 24px; }
+  .result-header { padding-left: 24px; padding-right: 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .intro-title { font-size: 32px; }
+  .form-footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="widget">
+
+  <!-- BRAND BAR -->
+  <div class="brand-bar">
+    <span class="brand-name">Equisé</span>
+    <span class="brand-tag">Salud Mental en el Trabajo</span>
+  </div>
+
+  <!-- BACK LINK -->
+  <div class="back-bar">
+    <a class="back-link" href="formacion-capacitacion.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver a Formación y Capacitación
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: INTRO
+  ═══════════════════════════════════ -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-body">
+      <div class="eyebrow">Autodiagnóstico</div>
+      <h1 class="intro-title">¿Este taller es<br><em>para tu organización?</em></h1>
+      <p class="intro-desc">
+        Siete preguntas sobre lo que pasa en tu equipo hoy. Al final recibís una devolución personalizada y podemos ver juntos si tiene sentido hacer algo.
+      </p>
+      <div class="meta-strip">
+        <div class="meta-item">
+          <span class="meta-num">7</span>
+          <span class="meta-lbl">preguntas</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">3'</span>
+          <span class="meta-lbl">minutos</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">1</span>
+          <span class="meta-lbl">devolución real</span>
+        </div>
+      </div>
+      <button class="btn btn-terra" onclick="startQuiz()">
+        Comenzar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: QUESTIONS
+  ═══════════════════════════════════ -->
+  <div class="screen" id="screen-questions">
+    <div class="progress-wrap">
+      <div class="progress-fill" id="prog"></div>
+    </div>
+    <div class="q-body">
+      <div class="q-counter" id="q-counter">Pregunta 1 de 7</div>
+      <div class="q-text"    id="q-text"></div>
+      <div class="options"   id="q-options"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: RESULT + CONTACT FORM
+  ═══════════════════════════════════ -->
+  <div class="screen" id="screen-result">
+    <div class="result-header" id="result-header">
+      <div class="result-eyebrow" id="r-eyebrow">Resultado</div>
+      <div class="result-title"   id="r-title"></div>
+      <div class="result-desc"    id="r-desc"></div>
+      <div class="score-row">
+        <div class="score-track">
+          <div class="score-bar" id="r-bar"></div>
+        </div>
+        <span class="score-label" id="r-score-lbl"></span>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-title">¿Lo revisamos juntos?</div>
+      <p class="contact-sub">Dejanos tus datos y te contactamos en las próximas 48hs para contarte cómo trabajamos y si tiene sentido hacer algo con tu equipo.</p>
+
+      <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║  IMPLEMENTACIÓN                                              ║
+        ║  Reemplazar el action con el endpoint de tu servicio:        ║
+        ║  · Formspree:  action="https://formspree.io/f/TU_ID"        ║
+        ║  · HubSpot:    usar HubSpot Forms API en submitForm()        ║
+        ║  Los campos ocultos "score" y "resultado" envían el          ║
+        ║  autodiagnóstico junto con los datos de contacto del lead.   ║
+        ╚══════════════════════════════════════════════════════════════╝
+      -->
+      <form id="contact-form" onsubmit="submitForm(event)">
+        <input type="hidden" name="score"       id="f-score">
+        <input type="hidden" name="resultado"   id="f-resultado">
+        <input type="hidden" name="puntaje_max" value="21">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">Nombre *</label>
+            <input class="form-input" type="text"  name="nombre"  placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Empresa *</label>
+            <input class="form-input" type="text"  name="empresa" placeholder="Nombre de la empresa" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">Email *</label>
+            <input class="form-input" type="email" name="email"   placeholder="tu@empresa.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Cargo</label>
+            <input class="form-input" type="text"  name="cargo"   placeholder="Tu rol en la organización">
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <span class="disclaimer">No compartimos tus datos. Te contactamos solo para hablar del taller.</span>
+          <button type="submit" class="btn btn-terra">
+            Enviar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: THANK YOU
+  ═══════════════════════════════════ -->
+  <div class="screen" id="screen-ty">
+    <div class="ty-body">
+      <div class="ty-icon">✓</div>
+      <h2 class="ty-title">Recibimos tus datos</h2>
+      <p class="ty-sub">
+        Nos ponemos en contacto en las próximas 48hs para contarte cómo trabajamos<br>y si tiene sentido hacer algo juntos.
+      </p>
+      <div class="ty-tagline">Personas que transforman organizaciones</div>
+    </div>
+  </div>
+
+</div><!-- /.widget -->
+
+<script>
+const QUESTIONS = [
+  {
+    text: "¿Con qué frecuencia registran ausencias o bajas relacionadas con salud — física o emocional?",
+    opts: [
+      { text: "Rara vez. No es algo que nos preocupe.",               score: 0 },
+      { text: "Ocasionalmente, pero no genera alarma.",               score: 1 },
+      { text: "Con cierta frecuencia — y ya empieza a notarse.",      score: 2 },
+      { text: "Es un problema recurrente y visible.",                 score: 3 }
+    ]
+  },
+  {
+    text: "Cuando alguien de un equipo «no está bien», ¿los líderes saben qué hacer?",
+    opts: [
+      { text: "Sí. Tienen claridad y herramientas para acompañar.",           score: 0 },
+      { text: "Lo manejan, aunque sin demasiado criterio.",                    score: 1 },
+      { text: "Generalmente lo ignoran o lo minimizan.",                       score: 2 },
+      { text: "No saben qué hacer — y eso suele empeorar las cosas.",          score: 3 }
+    ]
+  },
+  {
+    text: "¿Tu organización distingue entre estrés, ansiedad, depresión y desmotivación?",
+    opts: [
+      { text: "Sí, con claridad. Usamos esos términos correctamente.",   score: 0 },
+      { text: "Más o menos — hay conciencia, pero no mucho criterio.",   score: 1 },
+      { text: "Todo se mezcla y se trata igual.",                        score: 2 },
+      { text: "Nunca lo pensamos así.",                                  score: 3 }
+    ]
+  },
+  {
+    text: "¿Las personas de tu organización hablan abiertamente sobre cómo se sienten?",
+    opts: [
+      { text: "Sí, es parte de la cultura.",                          score: 0 },
+      { text: "Solo en confianza con alguien cercano.",               score: 1 },
+      { text: "Con dificultad — no es algo que se haga.",             score: 2 },
+      { text: "No. Hay un estigma implícito que lo impide.",          score: 3 }
+    ]
+  },
+  {
+    text: "¿Han perdido talento clave sin entender del todo por qué?",
+    opts: [
+      { text: "No. Las salidas son comprensibles y bien procesadas.",                   score: 0 },
+      { text: "Alguna vez, de manera aislada.",                                         score: 1 },
+      { text: "Varias veces — y queda la sensación de que algo nos escapó.",            score: 2 },
+      { text: "Es un patrón que se repite.",                                            score: 3 }
+    ]
+  },
+  {
+    text: "¿Cómo describís el nivel de exigencia y ritmo de trabajo en tu organización?",
+    opts: [
+      { text: "Saludable y sostenible.",                                         score: 0 },
+      { text: "Moderado, con momentos de mucha presión.",                        score: 1 },
+      { text: "Alto — y ya se notan señales de agotamiento en el equipo.",       score: 2 },
+      { text: "Muy alto. Es parte del problema.",                                score: 3 }
+    ]
+  },
+  {
+    text: "¿Tienen protocolos claros para cuando alguien atraviesa una situación de salud mental?",
+    opts: [
+      { text: "Sí, están definidos y la gente los conoce.",   score: 0 },
+      { text: "Algo informal, pero más o menos funciona.",    score: 1 },
+      { text: "No. Cada líder improvisa como puede.",         score: 2 },
+      { text: "No existe nada.",                              score: 3 }
+    ]
+  }
+];
+
+const TIERS = [
+  {
+    min: 0, max: 6,
+    eyebrow: "Tu organización",
+    title:   "Tiene buenas bases",
+    desc:    "Tus respuestas muestran una organización que ya presta atención a las personas. Reforzar esa cultura con criterio clínico siempre suma: equipos que entienden de qué hablan cuando hablan de salud mental trabajan mejor, se sostienen más y acompañan mejor a quien lo necesita.",
+    color:   "#c9a96e"
+  },
+  {
+    min: 7, max: 13,
+    eyebrow: "Hay señales",
+    title:   "Que vale la pena atender",
+    desc:    "Tus respuestas muestran una organización con buena voluntad, pero con algunos puntos ciegos que pueden volverse costosos. La diferencia entre un equipo que acompaña y uno que improvisa suele ser exactamente esto: información con criterio, dada a tiempo.",
+    color:   "#b05a42"
+  },
+  {
+    min: 14, max: 21,
+    eyebrow: "Tu organización",
+    title:   "Necesita este espacio",
+    desc:    "Tus respuestas revelan una organización donde la salud mental impacta de manera visible — aunque no siempre se llame así. Los equipos que están, pero no del todo. Los conflictos sin causa aparente. Los líderes sin herramientas. Todo eso tiene solución, y empieza por entender de qué se habla realmente.",
+    color:   "#8a4535"
+  }
+];
+
+let currentQ   = 0;
+let totalScore = 0;
+let blocking   = false;
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startQuiz() {
+  currentQ   = 0;
+  totalScore = 0;
+  show('screen-questions');
+  renderQuestion(true);
+}
+
+function renderQuestion(instant) {
+  const q   = QUESTIONS[currentQ];
+  const txt = document.getElementById('q-text');
+  const opt = document.getElementById('q-options');
+  blocking  = false;
+
+  document.getElementById('q-counter').textContent = `Pregunta ${currentQ + 1} de ${QUESTIONS.length}`;
+  document.getElementById('prog').style.width = `${(currentQ / QUESTIONS.length) * 100}%`;
+
+  if (!instant) {
+    txt.style.opacity   = '0';
+    txt.style.transform = 'translateY(-6px)';
+    opt.style.opacity   = '0';
+  }
+
+  const populate = () => {
+    txt.textContent = q.text;
+    opt.innerHTML   = '';
+    q.opts.forEach(o => {
+      const d = document.createElement('div');
+      d.className   = 'opt';
+      d.textContent = o.text;
+      d.addEventListener('click', () => pickOption(d, o.score));
+      opt.appendChild(d);
+    });
+    requestAnimationFrame(() => {
+      txt.style.transition  = 'opacity 0.24s ease, transform 0.28s ease';
+      opt.style.transition  = 'opacity 0.24s ease';
+      txt.style.opacity     = '1';
+      txt.style.transform   = 'translateY(0)';
+      opt.style.opacity     = '1';
+    });
+  };
+
+  instant ? populate() : setTimeout(populate, 220);
+}
+
+function pickOption(el, score) {
+  if (blocking) return;
+  blocking = true;
+  document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('prog').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+  setTimeout(() => {
+    totalScore += score;
+    currentQ++;
+    if (currentQ < QUESTIONS.length) { renderQuestion(false); }
+    else { showResult(); }
+  }, 460);
+}
+
+function showResult() {
+  const tier = TIERS.find(t => totalScore >= t.min && totalScore <= t.max);
+  const pct  = Math.round((totalScore / 21) * 100);
+
+  const eyebrow = document.getElementById('r-eyebrow');
+  eyebrow.textContent = tier.eyebrow;
+  eyebrow.style.color = tier.color;
+
+  document.getElementById('r-title').textContent     = tier.title;
+  document.getElementById('r-desc').textContent      = tier.desc;
+  document.getElementById('r-score-lbl').textContent = `${totalScore} / 21`;
+  document.getElementById('r-score-lbl').style.color = tier.color;
+
+  const bar = document.getElementById('r-bar');
+  bar.style.background = tier.color;
+  bar.style.width      = '0%';
+
+  document.getElementById('f-score').value     = totalScore;
+  document.getElementById('f-resultado').value = `${tier.eyebrow} — ${tier.title} (${totalScore}/21)`;
+
+  show('screen-result');
+  setTimeout(() => { bar.style.width = `${pct}%`; }, 180);
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+
+  /* ── ENVÍO ── reemplazar con fetch real:
+     fetch('https://formspree.io/f/TU_ID', {
+       method: 'POST', body: fd,
+       headers: { 'Accept': 'application/json' }
+     }).then(() => show('screen-ty'));
+  */
+
+  console.log('Lead:', Object.fromEntries(fd));
+  show('screen-ty');
+}
+
+document.head.insertAdjacentHTML('beforeend',
+  '<style>#r-eyebrow::before { background: currentColor; }</style>');
+</script>
+</body>
+</html>
