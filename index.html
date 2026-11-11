@@ -184,6 +184,15 @@
     .servicio-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); font-weight: 500; transition: gap 0.25s; }
     .servicio-card:hover .servicio-link { gap: 0.85rem; }
 
+    /* ── DIAGNÓSTICO (punto de partida) ── */
+    .diagnostico { background: var(--linen); display: grid; grid-template-columns: 1.3fr 1fr; gap: 5rem; align-items: center; }
+    .diagnostico-card { background: var(--white); border-top: 3px solid var(--terra); padding: 2.5rem 2.2rem; }
+    .diagnostico-list { list-style: none; margin-bottom: 2rem; }
+    .diagnostico-list li { padding: 0.9rem 0; border-bottom: 1px solid rgba(28,45,69,0.1); font-size: 0.92rem; line-height: 1.6; color: var(--text-mid); }
+    .diagnostico-list li strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); }
+    .diagnostico-card .btn-primary { display: inline-block; }
+    @media (max-width: 900px) { .diagnostico { grid-template-columns: 1fr; gap: 3rem; } .diagnostico-card { padding: 2rem 1.5rem; } }
+
     /* ── IMPACTO ── */
     .impacto { background: var(--terra); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .impacto .section-label { color: rgba(244,237,224,0.6); }
@@ -270,6 +279,7 @@
           Servicios <span class="dropdown-arrow">▾</span>
         </button>
         <ul class="dropdown-menu">
+          <li><a href="diagnostico-organizacional.html">Diagnóstico Organizacional</a></li>
           <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
           <li><a href="gestion-personas.html">Gestión de Personas</a></li>
           <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
@@ -292,6 +302,7 @@
       <li class="mobile-accordion-item" id="mobile-accordion">
         <button class="mobile-accordion-toggle">Servicios <span class="mobile-arrow">▾</span></button>
         <ul class="mobile-accordion-body">
+          <li><a href="diagnostico-organizacional.html">Diagnóstico Organizacional</a></li>
           <li><a href="reclutamiento.html">Reclutamiento y Selección</a></li>
           <li><a href="gestion-personas.html">Gestión de Personas</a></li>
           <li><a href="eventos-cultura.html">Eventos y Cultura</a></li>
@@ -376,6 +387,24 @@
         <p class="step-title">Implementación</p>
         <p class="step-desc">Lo trabajado se traduce en acción.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section class="diagnostico" id="diagnostico">
+    <div class="reveal">
+      <span class="section-label">Por dónde empezar</span>
+      <div class="rule"></div>
+      <h2 class="section-title">Diagnóstico<br><em>organizacional.</em></h2>
+      <p class="section-lead">Una mirada estratégica sobre las personas y los procesos de tu empresa. Para empresas que crecieron más rápido que su estructura y necesitan saber qué las frena y por dónde empezar.</p>
+    </div>
+    <div class="diagnostico-card reveal reveal-delay-1">
+      <ul class="diagnostico-list">
+        <li><strong>4 a 6 semanas</strong>De la reunión de inicio a la devolución.</li>
+        <li><strong>Del síntoma a la causa</strong>Conectamos lo que ve la dirección con sus causas de fondo.</li>
+        <li><strong>Una hoja de ruta</strong>Prioridades claras y una propuesta para la etapa siguiente.</li>
+      </ul>
+      <a href="diagnostico-organizacional.html" class="btn-primary">Conocer el diagnóstico</a>
     </div>
   </section>
 
@@ -488,7 +517,7 @@
 
   <footer>
     <p class="footer-logo"><img src="images/logo_horizontal.png" alt="Equisé" /></p>
-    <p class="footer-copy">www.equise.com.ar · Buenos Aires, Argentina</p>
+    <p class="footer-copy">www.equise.com.ar · Buenos Aires, Argentina · <a href="privacidad.html" style="color:inherit">Política de privacidad</a></p>
   </footer>
 
   <script>
