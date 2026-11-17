@@ -4,9 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Gestión de Personas — Equisé</title>
+<title>Gestión de Personas · Equisé</title>
+<meta name="description" content="Gestión de personas para empresas en crecimiento: estructuración del área de RRHH desde cero o una mirada externa para equipos que ya la tienen en marcha.">
+<link rel="canonical" href="https://equise.com.ar/gestion-personas.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Equisé">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://equise.com.ar/gestion-personas.html">
+<meta property="og:title" content="Gestión de Personas · Equisé">
+<meta property="og:description" content="Gestión de personas para empresas en crecimiento: estructuración del área de RRHH desde cero o una mirada externa para equipos que ya la tienen en marcha.">
+<meta property="og:image" content="https://equise.com.ar/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Equipo de trabajo reunido alrededor de una mesa, con el logo de Equisé">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="images/favicon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root { --navy:#28374a; --navy-dk:#1e2c3a; --terra:#754437; --terra-lt:#8f5446; --cream:#e5e2d7; --cream-lt:#f2f0ea; --cream-dk:#cac6b8; --warm-gray:#c8bcac; --white:#ffffff; --text:#3a4a58; --muted:#7a8a96; }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -57,14 +72,14 @@
   .hero::after { content: ''; position: absolute; right: -100px; top: -100px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(117,68,55,0.1) 0%, transparent 70%); pointer-events: none; }
   .hero-inner { max-width: 800px; position: relative; z-index: 1; }
   .hero-label { font-size: 10px; color: rgba(229,226,215,0.65); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 20px; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(38px,6vw,62px); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 22px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(43.7px,6.9vw,71.3px); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 22px; }
   .hero-title em { color: var(--cream); font-style: italic; }
   .hero-body { font-size: 17px; color: var(--cream-dk); line-height: 1.75; max-width: 620px; margin-bottom: 36px; font-weight: 300; }
   .hero-body strong { color: var(--cream); font-weight: 500; }
   .stat-strip { background: var(--terra); padding: 28px 60px; display: flex; align-items: center; }
   .stat-item { flex: 1; text-align: center; padding: 0 20px; border-right: 1px solid rgba(255,255,255,0.2); }
   .stat-item:last-child { border-right: none; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--white); display: block; line-height: 1; margin-bottom: 4px; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 34.5px; font-weight: 600; color: var(--white); display: block; line-height: 1; margin-bottom: 4px; }
   .stat-label { font-size: 11px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 1px; }
   .section { padding: 80px 60px; }
   .section.alt { background: var(--cream); }
@@ -72,15 +87,15 @@
   .section-header { margin-bottom: 52px; }
   .sec-label { font-size: 10px; color: var(--terra); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
   .sec-label.light { color: rgba(229,226,215,0.5); }
-  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(26px,4vw,36px); color: var(--navy); font-weight: 700; line-height: 1.2; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(29.9px,4.6vw,41.4px); color: var(--navy); font-weight: 600; line-height: 1.2; }
   .sec-title.light { color: var(--white); }
   .sec-intro { font-size: 16px; color: var(--muted); margin-top: 12px; max-width: 600px; line-height: 1.7; }
   .sec-intro.light { color: var(--cream-dk); }
   .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
   .product-card { background: var(--white); border-top: 4px solid var(--terra); padding: 40px 36px 44px; transition: transform 0.3s, box-shadow 0.3s; }
   .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(40,55,74,0.12); }
-  .product-num { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900; color: var(--cream-dk); line-height: 1; margin-bottom: 14px; }
-  .product-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: 8px; }
+  .product-num { font-family: 'Cormorant Garamond', serif; font-size: 57.5px; font-weight: 600; color: var(--cream-dk); line-height: 1; margin-bottom: 14px; }
+  .product-title { font-family: 'Cormorant Garamond', serif; font-size: 25.3px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 8px; }
   .product-subtitle { font-size: 13px; color: var(--terra); font-weight: 500; font-style: italic; margin-bottom: 20px; }
   .product-divider { width: 40px; height: 2px; background: var(--terra); margin-bottom: 20px; opacity: 0.4; }
   .product-body { font-size: 14.5px; color: var(--text); line-height: 1.75; margin-bottom: 28px; }
@@ -91,18 +106,18 @@
   .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
   .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
   .step { background: rgba(255,255,255,0.05); border: 1px solid rgba(229,226,215,0.1); padding: 32px 24px; border-radius: 2px; }
-  .step-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--cream-dk); line-height: 1; margin-bottom: 14px; }
-  .step-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 41.4px; font-weight: 600; color: var(--cream-dk); line-height: 1; margin-bottom: 14px; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 18.4px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
   .step-body { font-size: 13.5px; color: var(--cream-dk); line-height: 1.65; }
   .diff-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
   .diff-item { padding: 28px 24px; border: 1px solid rgba(40,55,74,0.1); border-top: 3px solid var(--terra); transition: transform 0.25s, box-shadow 0.25s; }
   .diff-item:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(40,55,74,0.08); }
   .diff-icon { font-size: 22px; color: var(--terra); margin-bottom: 12px; }
-  .diff-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .diff-title { font-family: 'Cormorant Garamond', serif; font-size: 18.4px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
   .diff-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
   .cta-section { background: var(--navy-dk); padding: 80px 60px; text-align: center; }
   .cta-label { font-size: 10px; color: rgba(229,226,215,0.65); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
-  .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(26px,4vw,38px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(29.9px,4.6vw,43.7px); font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
   .cta-sub { font-size: 15px; color: var(--cream-dk); margin-bottom: 40px; }
   .contacts-row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
   .contact-block { text-align: center; }
@@ -283,5 +298,6 @@
   const ac = document.getElementById('mobile-accordion');
   ac.querySelector('.mobile-accordion-toggle').addEventListener('click', () => ac.classList.toggle('open'));
 </script>
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51373412.js"></script>
 </body>
 </html>
