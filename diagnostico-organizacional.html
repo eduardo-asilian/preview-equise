@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Diagnóstico Organizacional · Equisé</title>
+<title>Diagnóstico organizacional · Equisé</title>
 <meta name="description" content="Diagnóstico organizacional para empresas que crecieron más rápido que su estructura: en 4 a 6 semanas, qué frena el crecimiento y por dónde empezar.">
 <link rel="canonical" href="https://equise.com.ar/diagnostico-organizacional.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Equisé">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://equise.com.ar/diagnostico-organizacional.html">
-<meta property="og:title" content="Diagnóstico Organizacional · Equisé">
+<meta property="og:title" content="Diagnóstico organizacional · Equisé">
 <meta property="og:description" content="Diagnóstico organizacional para empresas que crecieron más rápido que su estructura: en 4 a 6 semanas, qué frena el crecimiento y por dónde empezar.">
 <meta property="og:image" content="https://equise.com.ar/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -155,6 +155,22 @@
   .case-v { font-size: 14.5px; color: var(--text); line-height: 1.65; }
   .case-note { margin-top: 28px; font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 680px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .diff-grid.two { grid-template-columns: repeat(2,1fr); }
+  .section-header.solo { margin-bottom: 0; }
+  .contrast-section { padding-top: 72px; padding-bottom: 72px; }
+  .contrast-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: stretch; max-width: 940px; margin: 0 auto; }
+  .contrast-item { padding: 32px 30px; border: 1px solid rgba(40,55,74,0.12); }
+  .contrast-item.after { background: var(--cream-lt); border-color: rgba(117,68,55,0.25); border-top: 3px solid var(--terra); }
+  .contrast-k { font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; font-weight: 500; margin-bottom: 12px; }
+  .contrast-item.after .contrast-k { color: var(--terra); }
+  .contrast-v { font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 600; color: var(--navy); line-height: 1.25; }
+  .contrast-item:not(.after) .contrast-v { color: var(--text); }
+  .contrast-arrow { align-self: center; font-size: 26px; color: var(--terra); }
+  @media (max-width: 900px) {
+    .diff-grid.two { grid-template-columns: 1fr; }
+    .contrast-grid { grid-template-columns: 1fr; gap: 14px; }
+    .contrast-arrow { justify-self: center; transform: rotate(90deg); }
+  }
   @media (max-width: 900px) {
     .case-row { grid-template-columns: 1fr; gap: 14px; padding: 26px 0; }
     .signals { padding: 28px 24px; }
@@ -184,7 +200,7 @@
       </ul>
     </li>
     <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#contacto" class="nav-cta">Conversemos</a></li>
+    <li><a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20con%20Equis%C3%A9." class="nav-cta" target="_blank" rel="noopener">Conversemos</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
@@ -204,14 +220,14 @@
       </ul>
     </li>
     <li><a href="index.html#nosotros" class="mobile-link">Nosotros</a></li>
-    <li class="mobile-cta-wrap"><a href="index.html#contacto" class="mobile-link mobile-cta">Conversemos</a></li>
+    <li class="mobile-cta-wrap"><a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20con%20Equis%C3%A9." class="mobile-link mobile-cta" target="_blank" rel="noopener">Conversemos</a></li>
   </ul>
 </div>
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-label">Punto de partida · Diagnóstico Organizacional</div>
-    <h1 class="hero-title">Qué frena el crecimiento<br>de tu empresa y<br><em>por dónde empezar.</em></h1>
+    <div class="hero-label">Punto de partida · Diagnóstico organizacional</div>
+    <h1 class="hero-title">Diagnóstico organizacional:<br>qué frena a tu empresa<br><em>y por dónde empezar.</em></h1>
     <p class="hero-body">Una mirada estratégica sobre las personas y los procesos de tu empresa. En <strong>4 a 6 semanas</strong> conectamos los síntomas que ve la dirección con sus causas de fondo y los ordenamos por prioridad.</p>
     <div class="hero-actions">
       <a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20sobre%20el%20Diagn%C3%B3stico%20organizacional." class="cta-btn" target="_blank" rel="noopener">Conversemos</a>
@@ -243,6 +259,7 @@
       <li>La gestión y el conocimiento están concentrados en los dueños.</li>
       <li>Los roles no están escritos o se superponen.</li>
       <li>Van a sumar personas en los próximos meses.</li>
+      <li>Personas que entran y se van al poco tiempo.</li>
       <li>Hay un síntoma que la dirección no logra resolver: clientes que esperan, salidas que se repiten, decisiones en disputa.</li>
     </ul>
   </div>
@@ -318,7 +335,7 @@
       <ul class="feature-list">
         <li>Fortalezas a cuidar</li>
         <li>Hallazgos, cada uno con su causa de fondo</li>
-        <li>Mapa de prioridades: qué decidir primero y qué conviene dejar para después</li>
+        <li>Mapa de prioridades: qué decidir primero y qué puede esperar</li>
         <li>Riesgos de no actuar</li>
         <li>Propuesta de acompañamiento para la etapa siguiente</li>
       </ul>
@@ -329,14 +346,29 @@
 
 <section class="section">
   <div class="section-header">
+    <div class="sec-label">Quiénes lo hacen</div>
+    <h2 class="sec-title">Los fundadores,<br>de principio a fin.</h2>
+  </div>
+  <div class="diff-grid two">
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Trabajo directo con los fundadores</div><div class="diff-body">Eduardo Asilian y Ximena Pecile llevan adelante el diagnóstico de principio a fin.</div></div>
+    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia en organizaciones</div><div class="diff-body">Más de 20 años liderando equipos y áreas de personas en empresas de distintos tamaños y sectores.</div></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header solo">
     <div class="sec-label">Después del diagnóstico</div>
     <h2 class="sec-title">De la causa a la acción.</h2>
     <p class="sec-intro">El diagnóstico es la primera etapa del trabajo. La implementación se acuerda aparte, sobre las prioridades que definimos juntos en la devolución.</p>
+    <p class="sec-intro">La devolución incluye una propuesta para la etapa siguiente, para que lo que se definió se traduzca en acción.</p>
   </div>
-  <div class="diff-grid">
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Trabajo directo con los fundadores</div><div class="diff-body">Eduardo Asilian y Ximena Pecile llevan adelante el diagnóstico de principio a fin.</div></div>
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Experiencia en organizaciones</div><div class="diff-body">Más de 20 años liderando equipos y áreas de personas en empresas de distintos tamaños y sectores.</div></div>
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Una propuesta para seguir</div><div class="diff-body">La devolución incluye una propuesta para la etapa siguiente, para que lo que se definió se traduzca en acción.</div></div>
+</section>
+
+<section class="section contrast-section">
+  <div class="contrast-grid">
+    <div class="contrast-item"><div class="contrast-k">Hoy</div><p class="contrast-v">Sabemos que algo no está funcionando.</p></div>
+    <div class="contrast-arrow" aria-hidden="true">→</div>
+    <div class="contrast-item after"><div class="contrast-k">Después</div><p class="contrast-v">Entendemos qué pasa y por dónde empezar.</p></div>
   </div>
 </section>
 

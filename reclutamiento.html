@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Reclutamiento y Selección · Equisé</title>
+<title>Reclutamiento y selección · Equisé</title>
 <meta name="description" content="Reclutamiento y selección de personal: búsquedas punta a punta y acompañamiento al área de selección, para empresas que quieren incorporar con criterio.">
 <link rel="canonical" href="https://equise.com.ar/reclutamiento.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Equisé">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://equise.com.ar/reclutamiento.html">
-<meta property="og:title" content="Reclutamiento y Selección · Equisé">
+<meta property="og:title" content="Reclutamiento y selección · Equisé">
 <meta property="og:description" content="Reclutamiento y selección de personal: búsquedas punta a punta y acompañamiento al área de selección, para empresas que quieren incorporar con criterio.">
 <meta property="og:image" content="https://equise.com.ar/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -180,7 +180,22 @@
   }
   .cta-btn { display:inline-block; background:var(--terra); color:var(--white); padding:0.9rem 2.5rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:background 0.2s; margin-top:0.5rem; }
   .cta-btn:hover { background:var(--terra-lt); }
-  @media (max-width: 520px) { .steps-grid { grid-template-columns: 1fr; } }
+  .cta-btn.ghost { background: transparent; border: 1px solid rgba(229,226,215,0.4); color: var(--cream); }
+  .cta-btn.ghost:hover { background: rgba(229,226,215,0.08); }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .guarantee-body + .guarantee-body { margin-top: 12px; }
+  /* ── SEGMENTOS ── */
+  .segments-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .segment-card { background: var(--white); border: 1px solid rgba(40,55,74,0.1); border-top: 3px solid var(--terra); padding: 32px 28px; }
+  .segment-title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 6px; }
+  .segment-sub { font-size: 13px; color: var(--terra); font-weight: 500; font-style: italic; margin-bottom: 16px; }
+  .segment-body { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .segments-note { margin-top: 28px; font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 680px; }
+  @media (max-width: 900px) { .segments-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .cta-actions .cta-btn { width: 100%; text-align: center; padding-left: 1rem; padding-right: 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -204,7 +219,7 @@
       </ul>
     </li>
     <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#contacto" class="nav-cta">Conversemos</a></li>
+    <li><a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20con%20Equis%C3%A9." class="nav-cta" target="_blank" rel="noopener">Conversemos</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
     <span></span><span></span><span></span>
@@ -227,14 +242,14 @@
       </ul>
     </li>
     <li><a href="index.html#nosotros" class="mobile-link">Nosotros</a></li>
-    <li class="mobile-cta-wrap"><a href="index.html#contacto" class="mobile-link mobile-cta">Conversemos</a></li>
+    <li class="mobile-cta-wrap"><a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20con%20Equis%C3%A9." class="mobile-link mobile-cta" target="_blank" rel="noopener">Conversemos</a></li>
   </ul>
 </div>
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-label">Servicio · Reclutamiento y Selección</div>
-    <h1 class="hero-title">Incorporar bien<br>es la primera<br><em>decisión cultural.</em></h1>
+    <div class="hero-label">Servicio · Reclutamiento y selección</div>
+    <h1 class="hero-title">Reclutamiento y selección:<br>incorporar bien es la primera<br><em>decisión cultural.</em></h1>
     <p class="hero-body">Cada incorporación define quién va a sostener el crecimiento, la cultura y los resultados del negocio. Lo hacemos bien porque entendemos las dos partes del problema: la persona y la organización. <strong>Eso es lo que tenemos en mente en cada búsqueda.</strong></p>
   </div>
 </section>
@@ -290,6 +305,32 @@
   </div>
 </section>
 
+<section class="section" id="perfiles">
+  <div class="section-header">
+    <div class="sec-label">Para qué perfiles</div>
+    <h2 class="sec-title">Tres tipos de perfiles.<br>Un proceso para cada uno.</h2>
+    <p class="sec-intro">Trabajamos con pymes y empresas en crecimiento, de cualquier sector. Nuestro foco está en mandos medios y especialistas, y también tomamos búsquedas operativas y ejecutivas. Según el perfil cambian las etapas, las evaluaciones y los tiempos de la búsqueda.</p>
+  </div>
+  <div class="segments-grid">
+    <div class="segment-card">
+      <h3 class="segment-title">Operativos</h3>
+      <div class="segment-sub">Perfiles sin personas a cargo</div>
+      <p class="segment-body">Puestos operativos, administrativos o de planta, con poca o ninguna experiencia previa. El proceso pone el peso en la difusión del aviso, el filtro de candidatos y las entrevistas, para cubrir la posición en plazos cortos.</p>
+    </div>
+    <div class="segment-card">
+      <h3 class="segment-title">Líderes y especialistas</h3>
+      <div class="segment-sub">Mandos medios, gerentes y perfiles especializados</div>
+      <p class="segment-body">Posiciones con equipos a cargo y especialistas sin reportes directos, como un project manager o un analista de un área específica. Sumamos búsqueda directa de candidatos, evaluación técnica y evaluación psicológica.</p>
+    </div>
+    <div class="segment-card">
+      <h3 class="segment-title">Ejecutivos</h3>
+      <div class="segment-sub">Gerencias regionales, dirección y C-level</div>
+      <p class="segment-body">Búsquedas de alta dirección que llevan adelante los fundadores de principio a fin, con búsqueda directa de candidatos y evaluaciones psicológicas y psicométricas para el nivel ejecutivo.</p>
+    </div>
+  </div>
+  <p class="segments-note">Cada búsqueda se cotiza según el perfil. Después de la primera conversación te enviamos una propuesta con el alcance, los plazos y las condiciones.</p>
+</section>
+
 <section class="section dark">
   <div class="section-header">
     <div class="sec-label light">Cómo trabajamos</div>
@@ -309,7 +350,8 @@
     <div class="guarantee-icon">✦</div>
     <div>
       <div class="guarantee-title">Garantía de búsqueda</div>
-      <div class="guarantee-body">Todas nuestras búsquedas incluyen garantía. Si la incorporación no funciona dentro del período acordado, reiniciamos el proceso sin costo adicional. La garantía existe porque confiamos en nuestro criterio y nos hacemos cargo del resultado. Cada búsqueda tiene nuestro nombre.</div>
+      <div class="guarantee-body">Las búsquedas punta a punta incluyen garantía. Si la persona incorporada deja la posición dentro del período acordado, repetimos la búsqueda sin costo de honorarios. El período depende del tipo de perfil y queda fijado en la propuesta, junto con las condiciones en que aplica. La garantía existe porque confiamos en nuestro criterio y nos hacemos cargo del resultado.</div>
+      <div class="guarantee-body">La garantía es independiente de los 90 días de acompañamiento. En esos 90 días seguimos la adaptación de la persona y del equipo; la garantía cubre la reposición si la incorporación no funciona.</div>
     </div>
   </div>
 </section>
@@ -325,16 +367,17 @@
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Sin plantillas genéricas</div><div class="diff-body">Cada búsqueda parte de un diagnóstico real. Ajustamos la estrategia, los medios y los criterios de evaluación a la realidad de cada organización.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Criterio técnico sólido</div><div class="diff-body">Más de 20 años de experiencia directa en selección, en distintos sectores, tamaños y contextos. No aprendemos en tu búsqueda.</div></div>
     <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Acompañamiento real</div><div class="diff-body">Estamos en todo el proceso: desde la definición del perfil hasta los 90 días post-ingreso. El resultado importa más que cerrar la búsqueda.</div></div>
-    <div class="diff-item"><div class="diff-icon">◎</div><div class="diff-title">Dos personas, no una firma</div><div class="diff-body">Trabajas directamente con los fundadores. No hay intermediarios ni equipos que no conocen tu realidad. La responsabilidad es nuestra desde el principio.</div></div>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="cta-label">Empezamos con una conversación</div>
   <h2 class="cta-title">¿Tienes una posición crítica<br>o un proceso que no cierra?</h2>
-  <p class="cta-sub">Sin formularios. 30 minutos para entender tu realidad y ver si podemos ayudarte.</p>
-  
-  <a href="index.html#contacto" class="cta-btn">Conversemos →</a>
+  <p class="cta-sub">Escríbenos por WhatsApp o usa el formulario de contacto. En 30 minutos entendemos la búsqueda y vemos si podemos ayudarte.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5491173578219?text=Hola%2C%20quiero%20conversar%20sobre%20una%20b%C3%BAsqueda." class="cta-btn" target="_blank" rel="noopener">Conversemos</a>
+    <a href="index.html#contacto" class="cta-btn ghost">Formulario de contacto</a>
+  </div>
 </section>
 
 <footer>
